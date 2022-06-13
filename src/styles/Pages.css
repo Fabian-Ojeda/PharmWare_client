@@ -1,0 +1,36 @@
+.TitleSection{
+    font-size: 4vw
+}
+
+.OptionsInventory{
+    display: flex;
+    justify-content: space-between;
+}
+
+.leftTool{
+    align-items: center;
+    width: 50%;
+}
+
+.rightTools{
+    display: flex;
+    justify-content: space-between;
+    width: 50%;
+}
+
+.tool{
+    float:left;
+    margin: 10px;
+}
+
+.searchItem{
+    width: 50%;
+}
+
+.tableInventory{
+    background-color: aquamarine;
+}
+
+.divTableInventory{
+    overflow: auto; flex: 1 1 0%; position: relative; outline: currentcolor none medium;
+}
