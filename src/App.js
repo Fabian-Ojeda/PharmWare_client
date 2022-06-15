@@ -11,6 +11,7 @@ import AddUser from "./pages/AddUser";
 import Reports from "./pages/Reports";
 import InfoProduct from "./pages/InfoProduct";
 import UpdateInventory from "./pages/UpdateInventory";
+import ModifyInventory from "./pages/ModifyInventory";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
                     <Route path='/Ventas' element={<Sales/>}/>
                     <Route path='/Inventario' element={<Inventory/>}/>
                     <Route path='/Inventario/ActualizarInventario' element={<UpdateInventory/>}/>
+                    <Route path='/Inventario/ActualizarInventario/AgregarAlInventario' element={<ModifyInventory number={1}/>}/>
                     <Route path='/Formatos' element={<Formats/>}/>
                     <Route path='/AgregarUsuario' element={<AddUser/>}/>
                     <Route path='/Reportes' element={<Reports/>}/>

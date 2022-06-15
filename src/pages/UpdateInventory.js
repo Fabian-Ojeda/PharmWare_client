@@ -1,6 +1,7 @@
 import React from "react";
 import '../styles/Pages.css'
 import {BsBagPlusFill, BsJournalPlus} from "react-icons/bs";
+import {Link} from "react-router-dom";
 
 const UpdateInventory = () => {
   return(
@@ -11,7 +12,7 @@ const UpdateInventory = () => {
           </div>
           {/* Container de opciones */}
           <div className={'container mt-5 OptionsUpdateInventory'}>
-            <button className={'btn btn-secondary btn-lg btn-block'}><BsBagPlusFill/> Agregar al inventario</button>
+              <Link to={'/Inventario/ActualizarInventario/AgregarAlInventario'}><button className={'btn btn-secondary btn-lg btn-block'}><BsBagPlusFill/> Agregar al inventario</button></Link>
               <button className={'btn btn-secondary btn-lg btn-block'}><BsJournalPlus/> Crear nuevo producto</button>
           </div>
       </div>)
