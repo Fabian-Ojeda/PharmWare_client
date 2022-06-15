@@ -10,6 +10,7 @@ import Formats from "./pages/Formats";
 import AddUser from "./pages/AddUser";
 import Reports from "./pages/Reports";
 import InfoProduct from "./pages/InfoProduct";
+import UpdateInventory from "./pages/UpdateInventory";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
                     <Route path='/Main' element={<MainWindow/>}/>
                     <Route path='/Ventas' element={<Sales/>}/>
                     <Route path='/Inventario' element={<Inventory/>}/>
+                    <Route path='/Inventario/ActualizarInventario' element={<UpdateInventory/>}/>
                     <Route path='/Formatos' element={<Formats/>}/>
                     <Route path='/AgregarUsuario' element={<AddUser/>}/>
                     <Route path='/Reportes' element={<Reports/>}/>

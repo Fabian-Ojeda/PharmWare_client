@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from "react";
 import paginationFactory from "react-bootstrap-table2-paginator";
 import BootstrapTable from "react-bootstrap-table-next";
-import axios from "axios";
 import ButtonTable from "./ButtonTable";
 
 const TableInventory = (props) => {
