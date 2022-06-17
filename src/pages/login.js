@@ -1,7 +1,6 @@
 import React, {useState} from "react";
 import {useForm} from "react-hook-form";
 import logoDrogueria from "../assets/Images/Logo Drogueria.PNG"
-import consumeAPI from "../Tools/consumeAPI";
 
 const Login = () => {
 
@@ -34,9 +33,8 @@ const Login = () => {
                     >
                     </input>
                     <span className="text-danger text-small d-block mb-2">
-                    {errors.userName?.type === 'required' && "Por favor ingrese el nombre de usuario"}
-                </span>
-
+                        {errors.userName?.type === 'required' && "Por favor ingrese el nombre de usuario"}
+                    </span>
                 </div>
                 <div className="form-group mt-2">
                     <input

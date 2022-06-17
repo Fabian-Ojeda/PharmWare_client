@@ -39,3 +39,13 @@
     display: flex;
     justify-content:space-around;
 }
+
+.centerHorizontalELements{
+    justify-content: center;
+    align-items: center;
+}
+
+.groupCalendar {
+    display: flex;
+    width: 80%;
+}
