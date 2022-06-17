@@ -13,7 +13,7 @@ const UpdateInventory = () => {
           {/* Container de opciones */}
           <div className={'container mt-5 OptionsUpdateInventory'}>
               <Link to={'/Inventario/ActualizarInventario/AgregarAlInventario'}><button className={'btn btn-secondary btn-lg btn-block'}><BsBagPlusFill/> Agregar al inventario</button></Link>
-              <button className={'btn btn-secondary btn-lg btn-block'}><BsJournalPlus/> Crear nuevo producto</button>
+              <Link to={'/Inventario/ActualizarInventario/CrearProducto'}><button className={'btn btn-secondary btn-lg btn-block'}><BsJournalPlus/> Crear nuevo producto</button></Link>
           </div>
       </div>)
 }
