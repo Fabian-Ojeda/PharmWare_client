@@ -49,3 +49,8 @@
     display: flex;
     width: 80%;
 }
+
+.contTableSales{
+    height: 55vh;
+    overflow-y:scroll;
+}
