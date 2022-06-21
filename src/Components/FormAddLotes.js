@@ -17,7 +17,6 @@ const FormAddLotes = (props) => {
     if (props.changePrice==true){
         props.setChangePrice()
         setValue("priceProduct", props.salePrice)
-
     }
 
 
@@ -84,10 +83,6 @@ const FormAddLotes = (props) => {
                             />
                         )}
                     />
-
-
-
-
 
 
                     <div className="input-group-prepend">

@@ -50,6 +50,11 @@
     width: 80%;
 }
 
+.divDateBill {
+    display: flex;
+    width: 30%;
+}
+
 .contTableSales{
     height: 55vh;
     overflow-y:scroll;

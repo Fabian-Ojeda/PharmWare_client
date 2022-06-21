@@ -15,6 +15,7 @@ const ItemSaleTable = (props) => {
       <td>{props.product.name}</td>
       <td><FormItemSaleTable
           changeTotalValue={changeTotalValue}
+          defaultValue={props.product.quantity}
       /></td>
       <td>{props.product.unitValue}</td>
       <td>{totalValue}</td>

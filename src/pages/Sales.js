@@ -1,6 +1,7 @@
 import React, {useState, useEffect } from "react";
 import TableSales from "../Components/TableSales";
 import FormSearchProdUpdIn from "../Components/FormSearchProdUpdIn";
+import {Link} from "react-router-dom"
 
 const Sales = () => {
     const [products, setProducts] = useState([{id:0, name:'Acetaminofen Tabletas 500mg',quantity:1,unitValue:1000},
@@ -50,9 +51,11 @@ const Sales = () => {
       setHandleSearch(true)
     }
 
-    const printBills = () => {
-        alert("aqui van los comandos de reimprimir facturas")
+    const printBill = () => {
+      alert("Se le imprime, claro que si")
+        //mandar a imprimir y limpiar la tabla
     }
+
 
     useEffect(() => {
         calcTotalSale()
@@ -62,7 +65,7 @@ const Sales = () => {
         <h1 className='TitleSection'>Ventas</h1>
           {/*Panel de opciones*/}
           <div className={'row mt-4'}>
-              <div className={'col'} align={'center'}><button className={'btn btn-secondary '} onClick={printBills} style={{width:'50%'}}>Reimprimir facturas</button></div>
+              <div className={'col'} align={'center'}><Link to={"/Ventas/ReimprimirFacturas"}><button className={'btn btn-secondary '} style={{width:'50%'}}>Reimprimir facturas</button></Link></div>
               <div className={'col'} align={'center'}><button className={'btn btn-secondary'} onClick={showHandleSearch} style={{width:'50%'}}>Buscar manualmente</button></div>
           </div>
           {/*Panel de busqueda manual*/}
@@ -82,13 +85,33 @@ const Sales = () => {
               <div className={'col'}><h1>Valor total: {totalSale}</h1></div>
               <div className={'col'}>
                   <div className={'row mt-2'}>
-                      <div className={'col'} align={'right'}><button  className={'btn btn-primary'}>Finalizar venta</button></div>
+                      <div className={'col'} align={'right'}><button  className={'btn btn-primary'} data-bs-toggle="modal" data-bs-target="#ModalConfirmSale">Finalizar venta</button></div>
                       <div className={'col'} align={'right'}><button className={'btn btn-danger mx-5'}>Cancelar Venta</button></div>
                   </div>
               </div>
-
           </div>
-
+          {/*Modal de confirmación de venta*/}
+          <div className="modal fade" id="ModalConfirmSale" tabIndex="-1" aria-labelledby="exampleModalLabel"
+               aria-hidden="true">
+              <div className="modal-dialog modal-dialog-centered">
+                  <div className="modal-content">
+                      <div className="modal-header">
+                          <h5 className="modal-title" id="exampleModalLabel">Venta cerrada</h5>
+                          <button type="button" className="btn-close" data-bs-dismiss="modal"
+                                  aria-label="Close"></button>
+                      </div>
+                      <div className="modal-body">
+                          <h3>Valor total: ${totalSale}</h3>
+                          <br/>
+                          <h3>Desea imprimir factura</h3>
+                      </div>
+                      <div className="modal-footer">
+                          <button type="button" className="btn btn-secondary" data-bs-dismiss="modal" onClick={printBill}>Si</button>
+                          <button type="button" className="btn btn-primary" data-bs-dismiss="modal">No</button>
+                      </div>
+                  </div>
+              </div>
+          </div>
       </div>
   )
 }

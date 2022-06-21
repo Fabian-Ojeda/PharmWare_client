@@ -12,7 +12,7 @@ const FormItemSaleTable = (props) => {
             className="form-control"
             type={'number'}
             style={{width:'20%'}}
-            defaultValue={1}
+            defaultValue={props.defaultValue}
             min={1}
             onChange={changeQuantity}
         />

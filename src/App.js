@@ -13,6 +13,7 @@ import InfoProduct from "./pages/InfoProduct";
 import UpdateInventory from "./pages/UpdateInventory";
 import ModifyInventory from "./pages/ModifyInventory";
 import AddNewProduct from "./pages/AddNewProduct";
+import ReprintBill from "./pages/ReprintBill";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
                     <Route path='/' element={<Login/>}/>
                     <Route path='/Main' element={<MainWindow/>}/>
                     <Route path='/Ventas' element={<Sales/>}/>
+                    <Route path='/Ventas/ReimprimirFacturas' element={<ReprintBill/>}/>
                     <Route path='/Inventario' element={<Inventory/>}/>
                     <Route path='/Inventario/ActualizarInventario' element={<UpdateInventory/>}/>
                     <Route path='/Inventario/ActualizarInventario/AgregarAlInventario' element={<ModifyInventory number={1}/>}/>
