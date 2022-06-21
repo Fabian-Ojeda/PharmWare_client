@@ -3,7 +3,7 @@ import { Table } from 'react-bootstrap';
 
 const TableBills = (props) => {
 
-    const [billselected, setBillSelected] = useState(null)
+    const [billselected, setBillSelected] = useState(0)
 
     const changeBillSelected = (id) => {
         setBillSelected(id)
@@ -38,7 +38,7 @@ const TableBills = (props) => {
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            aqui va otra tabla
+                            aqui va otra tabla, pero mire la hora de la factura seleccionada {props.bills[billselected].hora}
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Imprimir</button>
