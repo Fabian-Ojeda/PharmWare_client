@@ -5,13 +5,14 @@ import DatePicker, {registerLocale} from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import es from 'date-fns/locale/es';
 import {BsCalendarEvent} from "react-icons/bs";
+import ContainerTableBills from "../Components/containerTableBills";
 registerLocale("es", es)
 
 const ReprintBill = () => {
     const {register, formState: {errors}, handleSubmit, control, setValue } = useForm()
-    const [bills, setBills] = useState([{id:0,hora:'12:32 m'},{id:1,hora:'10:26 a.m'},{id:2,hora:'07:12 a.m'},{id:3,hora:'05:10 a.m'}
-        ,{id:4,hora:'08:56 a.m'},{id:5,hora:'09:41 a.m'},{id:6,hora:'06:12 p.m'},{id:7,hora:'10:14 a.m'},{id:8,hora:'05:02 p.m'},
-        {id:9,hora:'11:58 a.m'}])
+    const [bills, setBills] = useState([{id:0,hour:'12:32 m'},{id:1,hour:'10:26 a.m'},{id:2,hour:'07:12 a.m'},{id:3,hour:'05:10 a.m'}
+        ,{id:4,hour:'08:56 a.m'},{id:5,hour:'09:41 a.m'},{id:6,hour:'06:12 p.m'},{id:7,hour:'10:14 a.m'},{id:8,hour:'05:02 p.m'},
+        {id:9,hour:'11:58 a.m'}])
     const onSubmit = (data) => {
         alert("Nos llego la fecha "+data.dateBill)
         console.log(data)
@@ -49,8 +50,9 @@ const ReprintBill = () => {
             </form>
         </div>
         <div className={'mt-5'}>
-            <TableBills
-                bills={bills}/>
+            <ContainerTableBills
+                bills={bills}
+            />
         </div>
     </div>)
 }
