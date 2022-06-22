@@ -9,7 +9,6 @@ registerLocale("es", es)
 const FormAddLotes = (props) => {
     const {register, formState: {errors}, handleSubmit, watch,control, setValue } = useForm()
     const onSubmitValuesProduct = (data) => {
-
         alert("Nos llega por ahora: "+data.quantityProduct+" "+data.priceProduct)
         console.log(data)
     }
@@ -32,7 +31,7 @@ const FormAddLotes = (props) => {
                 </select>
                 <span className="text-danger text-small d-block mt-1">
                         {errors.providers?.type === 'required' && "Por favor seleccione un proveedor"}
-                    </span>
+                </span>
             </div>
             <div className={'form-group mt-3 row'}>
                 <div className={'form-group col'}>
