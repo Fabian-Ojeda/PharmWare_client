@@ -1,9 +1,7 @@
 import React, {useState, useEffect} from "react";
-import { Table } from 'react-bootstrap';
 import paginationFactory from "react-bootstrap-table2-paginator";
 import BootstrapTable from "react-bootstrap-table-next";
 import TableReprintBillProduct from "./TableReprintBillProduct";
-import ButtonTable from "./ButtonTable";
 
 const TableBills = (props) => {
 
