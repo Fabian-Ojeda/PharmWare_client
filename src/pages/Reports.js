@@ -1,8 +1,42 @@
-import React from "react";
+import React, {useState} from "react";
+import ReportDaily from "../Components/ReportDaily";
+import ReportMonthly from "../Components/ReportMonthly";
 
 const Reports = () => {
+
+    const [componentSelected, setComponentSelected] = useState(<br/>)
+
+    const changeComponent = (identifier) => {
+        if (identifier===1){
+            const component = <ReportDaily/>
+            setComponentSelected(component)
+        } else {
+            const component = <ReportMonthly/>
+            setComponentSelected(component)
+        }
+    }
+
+
     return(
-        <h1>Estos son los reportes</h1>
+        <div className={'container'}>
+            {/* Container Parte superior */}
+            <div>
+                <h1 className='TitleSection'>Reportes</h1>
+            </div>
+            {/* Container De botones */}
+            <div className={'row'}>
+                <div className={'col'}>
+                    <button onClick={()=> changeComponent(1)}>Reporte diario de ventas</button>
+                </div>
+                <div className={'col'}>
+                    <button onClick={()=> changeComponent(2)}>Reporte mensual de ventas</button>
+                </div>
+            </div>
+            {/*Container del reporte seleccionado*/}
+            <div>
+                {componentSelected}
+            </div>
+        </div>
     )
 }
 

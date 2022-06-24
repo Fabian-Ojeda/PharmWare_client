@@ -4,6 +4,7 @@ import {BsSearch} from "react-icons/bs";
 import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css';
 import ContainerTableInventory from "../Components/containerTableInventory";
 import {Link} from "react-router-dom";
+import FormSearchInventory from "../Components/FormSearchInventory";
 
 
 const Inventory = () => {
@@ -38,11 +39,7 @@ const Inventory = () => {
                             </li>
                         </ul>
                     </div>
-                    <div className="input-group tool searchItem">
-                        <div className="input-group-text" id="btnGroupAddon"><BsSearch/></div>
-                        <input type="text" className="form-control" placeholder="Buscar"
-                               aria-label="Input group example" aria-describedby="btnGroupAddon" />
-                    </div>
+                    <FormSearchInventory/>
                 </div>
             </div>
             {/* Container tabla */}
