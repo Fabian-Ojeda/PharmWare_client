@@ -24,16 +24,16 @@ const Reports = () => {
                 <h1 className='TitleSection'>Reportes</h1>
             </div>
             {/* Container De botones */}
-            <div className={'row'}>
-                <div className={'col'}>
-                    <button onClick={()=> changeComponent(1)}>Reporte diario de ventas</button>
+            <div className={'row mt-5'}>
+                <div className={'col'} align={'center'}>
+                    <button className={'btn btn-secondary'} onClick={()=> changeComponent(1)}>Reporte diario de ventas</button>
                 </div>
-                <div className={'col'}>
-                    <button onClick={()=> changeComponent(2)}>Reporte mensual de ventas</button>
+                <div className={'col'} align={'center'}>
+                    <button className={'btn btn-secondary'}  onClick={()=> changeComponent(2)}>Reporte mensual de ventas</button>
                 </div>
             </div>
             {/*Container del reporte seleccionado*/}
-            <div>
+            <div className={'mt-4'} align={'center'}>
                 {componentSelected}
             </div>
         </div>

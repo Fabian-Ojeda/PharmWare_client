@@ -1,13 +1,17 @@
-import React from "react";
+import React, {useState} from "react";
 import ReportBoard from "./ReportBoard";
 import { Controller, useForm} from "react-hook-form";
 import DatePicker from "react-datepicker";
 
 const ReportMonthly = () => {
     const {register, formState: {errors}, handleSubmit, control, setValue } = useForm()
-
+    const [visible, setVisible] = useState('none')
     const onSubmit = (data) => {
-        alert("Nos llego la fecha "+data.dateBill)
+        setVisible('block')
+        //alert("Nos llego la fecha "+data.dateBill)
+    }
+    const printReport = () => {
+      alert("se le imprime, claro que si")
     }
   return(
       <div>
@@ -27,7 +31,7 @@ const ReportMonthly = () => {
                               locale={"es"}
                               onChange={(date) => field.onChange(date)}
                               selected={field.value}
-                              dateFormat="dd/MM/yyyy"
+                              dateFormat="MM/yyyy"
                               showMonthYearPicker
                           />
                       )}
@@ -42,10 +46,14 @@ const ReportMonthly = () => {
           </form>
       </div>
       {/*container de campos*/}
-        <div>
+        <div className={'mt-3'} style={{display:visible}}>
           <h3>Mes: Mayo</h3>
-          <ReportBoard/>
+          <ReportBoard
+              visible = {visible}/>
         </div>
+          <div align={'right'} style={{display:visible}}>
+              <button className={'btn btn-primary'} onClick={() => printReport()}>Imprimir Reporte</button>
+          </div>
       </div>)
 }
 

@@ -1,14 +1,18 @@
-import React from "react";
+import React, {useState} from "react";
 import ReportBoard from "./ReportBoard";
 import { Controller, useForm} from "react-hook-form";
 import DatePicker from "react-datepicker";
+import ReportMonthly from "./ReportMonthly";
 
 const ReportDaily = () => {
-    const {register, formState: {errors}, handleSubmit, control, setValue } = useForm()
 
+    const {register, formState: {errors}, handleSubmit, control, setValue } = useForm()
+    const [visible, setVisible] = useState('none')
     const onSubmit = (data) => {
-        alert("Nos llego la fecha "+data.dateBill)
+        setVisible('block')
+        //alert("Nos llego la fecha "+data.dateBill)
     }
+
 
     return(<div>
             {/*container de fecha*/}
@@ -41,9 +45,10 @@ const ReportDaily = () => {
                 </form>
             </div>
             {/*container de campos*/}
-            <div>
+            <div className={'mt-3'} style={{display:visible}}>
                 <h3>Fecha: 21/05/36</h3>
-                <ReportBoard/>
+                <ReportBoard
+                visible = {visible}/>
             </div>
     </div>
         )
