@@ -50,6 +50,10 @@
     width: 80%;
 }
 
+.groupCalendarTH{
+    display: flex;
+}
+
 .divDateBill {
     display: flex;
     width: 30%;
@@ -58,4 +62,13 @@
 .contTableSales{
     height: 55vh;
     overflow-y:scroll;
+}
+
+.containerButtonsFormats{
+    display: flex;
+    justify-content: space-between;
+}
+
+.btnFormats{
+    width: 15%;
 }

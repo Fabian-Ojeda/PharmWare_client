@@ -1,10 +1,8 @@
 import React, {useState} from "react";
 import { Controller, useForm} from "react-hook-form";
-import TableBills from "../Components/TableBills";
 import DatePicker, {registerLocale} from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import es from 'date-fns/locale/es';
-import {BsCalendarEvent} from "react-icons/bs";
 import ContainerTableBills from "../Components/containerTableBills";
 registerLocale("es", es)
 
