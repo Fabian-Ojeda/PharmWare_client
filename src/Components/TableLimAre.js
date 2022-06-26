@@ -15,7 +15,7 @@ const TableLimAre = () => {
           <th>Estanteria</th>
           <th>Pisos</th>
           <th>Paredes</th>
-          <th>Paredes</th>
+          <th>Baños</th>
           <th>Detergente</th>
           <th>Hipoclorito de sodio</th>
           <th>Realizo</th>
