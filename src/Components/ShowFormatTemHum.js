@@ -81,7 +81,6 @@ const ShowFormatTemHum = () => {
       <div>
         <ContainerTableTempHume
         visible={visibleTable}/>
-
       </div>
     </div>
 
