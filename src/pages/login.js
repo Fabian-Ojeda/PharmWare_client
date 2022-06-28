@@ -19,13 +19,14 @@ const Login = () => {
                 width="50%"
             />
             <h1 className={"m-4"}>Inicio de sesión</h1>
-            <form className="col mr-4 ml-4" onSubmit={handleSubmit(onSubmit)}>
+            <form className="col mr-4 ml-4" onSubmit={handleSubmit(onSubmit)} data-testid={"formLogin"}>
                 <div className="form-group mt-2">
                     <input
                         name="userName"
                         className="form-control my-2"
                         type={"text"}
                         placeholder={"Ingrese el nombre de usuario"}
+                        data-testid={"nameLogin"}
                         style={{width:'50%'}}
                         {...register("userName",{
                             required:true
@@ -42,6 +43,7 @@ const Login = () => {
                         className="form-control my-2"
                         type={"password"}
                         placeholder={"Ingrese la contraseña"}
+                        data-testid={"pswLogin"}
                         style={{width:'50%'}}
                         {...register("password",{
                             required:true
@@ -53,7 +55,7 @@ const Login = () => {
 
                 </div>
                 <div className="form-group mt-4">
-                    <button type="submit" className="btn btn-success" style={{width:'25%'}}>Ingresar</button>
+                    <button type="submit" className="btn btn-success" style={{width:'25%'}} data-testid={"btnLogin"}>Ingresar</button>
                 </div>
 
             </form>
