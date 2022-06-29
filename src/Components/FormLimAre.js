@@ -130,7 +130,6 @@ const FormLimAre = () => {
                     <div className={'row mt-4 centerHorizontalELements'}>
                         <button className={'btn btn-success btnFormats'} type={'submit'}>Guardar</button>
                     </div>
-
                 </form>
             </div>
         </div>)

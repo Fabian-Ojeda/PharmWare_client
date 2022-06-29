@@ -72,3 +72,11 @@
 .btnFormats{
     width: 15%;
 }
+
+hr {
+    margin: 1rem 0;
+    color: black;
+    background-color: black;
+    border: 0;
+    opacity: 1;
+}

@@ -15,7 +15,6 @@ const FormTempHum = () => {
         {/**/}
         <div className={'mt-4'}>
           <h4>Rellene los siguientes campos</h4>
-
           <form className={'row mt-3'} onSubmit={handleSubmit(onSubmit)}>
             <div className={'form-group col'}>
               <div className="groupCalendarTH my-2">
@@ -35,7 +34,6 @@ const FormTempHum = () => {
                         />
                     )}
                 />
-
 
                 <div className="input-group-prepend">
                   <span className="input-group-text"><h7><BsCalendarEvent/></h7></span>
