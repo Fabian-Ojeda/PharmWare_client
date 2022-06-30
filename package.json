@@ -22,6 +22,7 @@
     "react-rainbow-components": "^1.30.1",
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",
+    "trim": "^1.0.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
@@ -53,6 +54,7 @@
     "@testing-library/react": "^13.3.0",
     "install-peers": "^1.0.4",
     "react-scripts": "5.0.1",
-    "nth-check": "^2.0.1"
+    "nth-check": "^2.0.1",
+    "trim": "^1.0.1"
   }
 }

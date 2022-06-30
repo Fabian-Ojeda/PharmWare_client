@@ -2,7 +2,6 @@ import React from "react";
 import { Controller, useForm} from "react-hook-form";
 import DatePicker from "react-datepicker";
 import {BsCalendarEvent} from "react-icons/bs";
-import TableItemsActRec from "./TableItemsActRec";
 
 const FormItemsActRec = (props) => {
 
