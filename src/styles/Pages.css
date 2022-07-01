@@ -54,6 +54,11 @@
     display: flex;
 }
 
+.groupCalendarRH1 {
+    display: flex;
+    width: 40%;
+}
+
 .divDateBill {
     display: flex;
     width: 30%;
@@ -61,6 +66,10 @@
 
 .contTableSales{
     height: 55vh;
+    overflow-y:scroll;
+}
+
+.contTableRH1M{
     overflow-y:scroll;
 }
 

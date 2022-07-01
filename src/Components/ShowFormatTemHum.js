@@ -11,7 +11,6 @@ const ShowFormatTemHum = () => {
   const onSubmit = (data) => {
     alert("Nos llega por ahora: "+data.initDate+" "+data.endDate)
     setVisibleTable('block')
-    //console.log(data)
   }
 
   return(<div>
