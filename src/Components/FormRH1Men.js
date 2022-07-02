@@ -55,8 +55,8 @@ const FormRH1Men = () => {
                                 })}
                             />
                             <span className="text-danger text-small d-block mb-2">
-                        {errors.ordinaries?.type === 'required' && "Por favor ingrese la cantidad de ordinarios"}
-                    </span>
+                                {errors.ordinaries?.type === 'required' && "Por favor ingrese la cantidad de ordinarios"}
+                            </span>
                         </div>
                         <div className={'form-group col mx-5'}>
                             <input
