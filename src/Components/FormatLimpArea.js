@@ -20,7 +20,6 @@ const FormatLimpArea = () => {
         }
     }
 
-
     return(
         <div>
             <h1>Limpieza de areas</h1>

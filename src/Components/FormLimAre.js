@@ -9,7 +9,6 @@ const FormLimAre = () => {
         alert("Nos llega por ahora: inyectologia: "+data.inyectologia+" Estanteria: "+data.estanteria+" \nFecha: "+data.dateDay+
             " pisos: "+data.pisos+" paredes: "+data.paredes+ " baños: "+data.banios+" detegente: "+data.detergente+" hipo sodio: "+data.hipoSodio
         +"\nRealizo: "+data.realizo+" superviso: "+data.superviso)
-        //console.log(data)
     }
     return(
         <div>
