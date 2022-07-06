@@ -6,7 +6,7 @@ import TableLotes from "./TableLotes";
 
 const TableInventory = (props) => {
 
-    const [players, setPlayers] = useState([]);
+    const [products, setProducts] = useState([]);
 
     const [itemSelected, setItemSelected] = useState(null)
 
@@ -14,32 +14,38 @@ const TableInventory = (props) => {
         setItemSelected(item)
     }
 
-    const getPlayers = () => {
+    const getProducts = () => {
         const data = props.data
-        //const data = [{name:'acer', predator:'asasin', button:<button onClick={mostrarQueSirve}>Hola mijo</button>}]
         for (let i = 0; i < data.length; i++) {
             data[i].button=<ButtonTable
-                name={data[i].name}
+                name={data[i].nombre}
                 changeSelecteditem={changeSelectedItem}/>
         }
-        setPlayers(data)
+        setProducts(data)
 
     }
 
     useEffect(()=>{
-        getPlayers()
+        getProducts()
     })
 
     const columns = [
-        {dataField: "name", text:"Player Name"},
-        {dataField: "predator", text:"predator"},
-        {dataField: "team_name", text:"Player Team"},
-        {dataField: "button", text:"Mirar"}
+        {dataField: "idProductos", text:"Id Producto"},
+        {dataField: "nombre", text:"Nombre"},
+        {dataField: "categoria", text:"Categoria"},
+        {dataField: "laboratorio", text:"Laboratorio"},
+        {dataField: "precio", text:"Precio"},
+        {dataField: "unidad_venta", text:"Unidad de venta"},
+        {dataField: "ubicacion", text:"Ubicación"},
+        {dataField: "grabado_impuesto", text:"Impuesto"},
+        {dataField: "cantidad_minima", text:"Cantidad minima"},
+        {dataField: "cantidad", text:"Cantidad"},
+        {dataField: "button", text:"Lotes"}
     ]
     return(<div className={'divTableInventory'}>
         <BootstrapTable
             keyField={'name'}
-            data={players}
+            data={products}
             columns={columns}
             pagination={paginationFactory()}/>
 
