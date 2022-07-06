@@ -1,12 +1,19 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import { Controller, useForm} from "react-hook-form";
 import DatePicker, {registerLocale} from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import {useNavigate} from "react-router-dom"
 import es from 'date-fns/locale/es';
 import ContainerTableBills from "../Components/containerTableBills";
 registerLocale("es", es)
 
 const ReprintBill = () => {
+    const navigate = useNavigate();
+    useEffect(() => {
+        if (!localStorage.getItem("token")){
+            navigate('/');
+        }
+    });
     const {register, formState: {errors}, handleSubmit, control, setValue } = useForm()
     const [bills, setBills] = useState([{id:0,hour:'12:32 m'},{id:1,hour:'10:26 a.m'},{id:2,hour:'07:12 a.m'},{id:3,hour:'05:10 a.m'}
         ,{id:4,hour:'08:56 a.m'},{id:5,hour:'09:41 a.m'},{id:6,hour:'06:12 p.m'},{id:7,hour:'10:14 a.m'},{id:8,hour:'05:02 p.m'},

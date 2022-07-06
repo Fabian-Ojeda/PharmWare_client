@@ -1,12 +1,19 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import FormatTempHumed from "../Components/FormatTempHumed";
 import FormatLimpArea from "../Components/FormatLimpArea";
 import FormatActRec from "../Components/FormatActRec";
 import FormatRH1Men from "../Components/FormatRH1Men";
 import FormatRH1An from "../Components/FormatRH1An";
 import FormatAlerSan from "../Components/FormatAlerSan";
+import {useNavigate} from "react-router-dom"
 
 const Formats = () => {
+    const navigate = useNavigate();
+    useEffect(() => {
+        if (!localStorage.getItem("token")){
+            navigate('/');
+        }
+    });
 
     const [component, setComponent] = useState(<br/>)
     const changeComponent = (index) => {

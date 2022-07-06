@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Login from "./pages/login";
 import MainWindow from "./pages/MainWindow";
@@ -16,12 +16,18 @@ import AddNewProduct from "./pages/AddNewProduct";
 import ReprintBill from "./pages/ReprintBill";
 
 function App() {
+
+    const changeToken = (token, rol) =>{
+        localStorage.setItem("token",token)
+        localStorage.setItem("rol",rol)
+    }
+
   return (
     <div>
         <BrowserRouter>
             <Sidebar>
                 <Routes>
-                    <Route path='/' element={<Login/>}/>
+                    <Route path='/' element={<Login changeToken = {changeToken}/>}/>
                     <Route path='/Main' element={<MainWindow/>}/>
                     <Route path='/Ventas' element={<Sales/>}/>
                     <Route path='/Ventas/ReimprimirFacturas' element={<ReprintBill/>}/>

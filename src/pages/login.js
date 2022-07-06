@@ -1,13 +1,28 @@
-import React, {useState} from "react";
+import React, { useEffect} from "react";
 import {useForm} from "react-hook-form";
 import logoDrogueria from "../assets/Images/Logo Drogueria.PNG"
+import InitSesion from "../Tools/InitSesion";
+import { useNavigate } from 'react-router-dom';
 
-const Login = () => {
+const Login = (props) => {
+    const navigate = useNavigate();
+    useEffect(() => {
+        if (localStorage.getItem("token")){
+            navigate('/Main');
+        }
+    });
 
     const {register, formState: {errors}, handleSubmit} = useForm()
 
-    const onSubmit = (data) => {
-        alert("tenemos de nombre de usuario: "+data.userName+" y de contraseña: "+data.password)
+    const onSubmit = async (data) => {
+        const response = await InitSesion(data.userName, data.password)
+        if (response.token) {
+            props.changeToken(response.token, response.rol)
+            //alert(response.rol)
+        } else {
+            console.log(response)
+        }
+        //alert("tenemos de nombre de usuario: "+data.userName+" y de contraseña: "+data.password)
     }
 
     return(

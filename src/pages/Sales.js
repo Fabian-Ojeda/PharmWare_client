@@ -1,9 +1,17 @@
 import React, {useState, useEffect } from "react";
 import TableSales from "../Components/TableSales";
 import FormSearchProdUpdIn from "../Components/FormSearchProdUpdIn";
-import {Link} from "react-router-dom"
+import {Link, useNavigate} from "react-router-dom"
 
 const Sales = () => {
+
+    const navigate = useNavigate();
+    useEffect(() => {
+        if (!localStorage.getItem("token")){
+            navigate('/');
+        }
+    });
+
     const [products, setProducts] = useState([{id:0, name:'Acetaminofen Tabletas 500mg',quantity:1,unitValue:1000},
         {id:1, name:'Suero Pedialyte Frasco 200ml',quantity:1,unitValue:6500},
         {id:2, name:'Amoxicilina Tabletas 500mg',quantity:1,unitValue:4500},

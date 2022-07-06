@@ -1,7 +1,14 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import FormHandleSearchInfoProduct from "../Components/FormHandleSearchInfoProduct";
+import {useNavigate} from "react-router-dom";
 
 const InfoProduct = () => {
+    const navigate = useNavigate();
+    useEffect(() => {
+        if (!localStorage.getItem("token")){
+            navigate('/');
+        }
+    });
 
     const [product, setProduct] = useState({name:'Dodge Challenger srt Demon', price:590000000, unitSale:'carro', ubication:'F-5'})
 

@@ -1,14 +1,19 @@
-import React from "react";
+import React, {useEffect} from "react";
 import '../styles/Pages.css'
 import {BsSearch} from "react-icons/bs";
 import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css';
 import ContainerTableInventory from "../Components/containerTableInventory";
 import {Link} from "react-router-dom";
 import FormSearchInventory from "../Components/FormSearchInventory";
-
+import {useNavigate} from "react-router-dom"
 
 const Inventory = () => {
-
+    const navigate = useNavigate();
+    useEffect(() => {
+        if (!localStorage.getItem("token")){
+            navigate('/');
+        }
+    });
 
     return(
         <div className={'container'}>

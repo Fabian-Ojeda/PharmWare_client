@@ -1,12 +1,15 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { Controller, useForm} from "react-hook-form";
 import { useNavigate } from 'react-router-dom';
 
 const AddUser = () => {
-
     const navigate = useNavigate();
     const {register, formState: {errors}, handleSubmit, watch,control, setValue } = useForm()
-
+    useEffect(() => {
+        if (!localStorage.getItem("token")){
+            navigate('/');
+        }
+    });
     const onSubmit = (data) => {
         if (data.passwordUser!=data.passwordX2){
             alert("Las contraseñas no coinciden")

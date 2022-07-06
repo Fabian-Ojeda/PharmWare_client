@@ -1,8 +1,15 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import ReportDaily from "../Components/ReportDaily";
 import ReportMonthly from "../Components/ReportMonthly";
+import {useNavigate} from "react-router-dom";
 
 const Reports = () => {
+    const navigate = useNavigate();
+    useEffect(() => {
+        if (!localStorage.getItem("token")){
+            navigate('/');
+        }
+    });
 
     const [componentSelected, setComponentSelected] = useState(<br/>)
 

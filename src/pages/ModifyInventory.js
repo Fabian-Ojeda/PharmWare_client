@@ -1,10 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useEffect} from "react";
 import {Link} from "react-router-dom";
 import FormAddLotes from "../Components/FormAddLotes";
 import CalcSalePrice from "../Components/CalcSalePrice";
 import FormSearchProdUpdIn from "../Components/FormSearchProdUpdIn";
+import {useNavigate} from "react-router-dom"
 
 const ModifyInventory = (props) => {
+    const navigate = useNavigate();
+    useEffect(() => {
+        if (!localStorage.getItem("token")){
+            navigate('/');
+        }
+    });
     const [salePrice, setSalePrice] = useState(0)
     const [changePrice, setChangePrice] = useState(false)
     const changeSalePrice = (salePriceIn) => {

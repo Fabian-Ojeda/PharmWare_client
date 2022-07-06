@@ -1,9 +1,16 @@
-import React from "react";
+import React, {useEffect} from "react";
 import '../styles/Pages.css'
 import {BsBagPlusFill, BsJournalPlus} from "react-icons/bs";
 import {Link} from "react-router-dom";
+import {useNavigate} from "react-router-dom"
 
 const UpdateInventory = () => {
+    const navigate = useNavigate();
+    useEffect(() => {
+        if (!localStorage.getItem("token")){
+            navigate('/');
+        }
+    });
   return(
       <div className={'container'}>
           {/* Container Parte superior */}
