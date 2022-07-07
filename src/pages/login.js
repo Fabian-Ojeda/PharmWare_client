@@ -1,14 +1,17 @@
-import React, { useEffect} from "react";
+import React, {useState, useEffect} from "react";
 import {useForm} from "react-hook-form";
 import logoDrogueria from "../assets/Images/Logo Drogueria.PNG"
 import InitSesion from "../Tools/InitSesion";
 import { useNavigate } from 'react-router-dom';
 
 const Login = (props) => {
+
+    const [error, setError] = useState('')
+
     const navigate = useNavigate();
     useEffect(() => {
         if (localStorage.getItem("token")){
-            navigate('/Main');
+            navigate('/Main', {replace: true});
         }
     });
 
@@ -18,9 +21,8 @@ const Login = (props) => {
         const response = await InitSesion(data.userName, data.password)
         if (response.token) {
             props.changeToken(response.token, response.rol)
-            //alert(response.rol)
         } else {
-            console.log(response)
+            setError(response)
         }
         //alert("tenemos de nombre de usuario: "+data.userName+" y de contraseña: "+data.password)
     }
@@ -72,6 +74,9 @@ const Login = (props) => {
                 <div className="form-group mt-4">
                     <button type="submit" className="btn btn-success" style={{width:'25%'}} data-testid={"btnLogin"}>Ingresar</button>
                 </div>
+                <span className="text-danger fs-3 d-block mt-3">
+                    {error}
+                </span>
 
             </form>
         </div>

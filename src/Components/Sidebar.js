@@ -80,11 +80,11 @@ const Sidebar = (props) => {
                     </div>
                     {
                         menuItem.map((item, index)=>(
-                            <div style={{display:item.display}}>
-                            <NavLink to={item.path} key={index} className='link' activateclassname='active'>
-                                <div className='icon'>{item.icon}</div>
-                                <div style={{display:isOpen ? "block":"none"}} className='link_text'>{item.name}</div>
-                            </NavLink>
+                            <div style={{display:item.display}} key={index}>
+                                <NavLink to={item.path} key={index} className='link' activateclassname='active'>
+                                    <div className='icon'>{item.icon}</div>
+                                    <div style={{display:isOpen ? "block":"none"}} className='link_text'>{item.name}</div>
+                                </NavLink>
                             </div>
                         ))
                     }
