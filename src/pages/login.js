@@ -24,7 +24,6 @@ const Login = (props) => {
         } else {
             setError(response)
         }
-        //alert("tenemos de nombre de usuario: "+data.userName+" y de contraseña: "+data.password)
     }
 
     return(
