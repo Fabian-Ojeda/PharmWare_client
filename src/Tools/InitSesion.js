@@ -8,9 +8,7 @@ const InitSesion = async (usname, password) => {
     }).then(function (response) {
         if(response.data){
             responseServer = response.data
-            //return response.data
         }
-        //console.log(response.data.rol);
     }).catch(function (error) {
         if (error.response.data.message){
             if(error.response.data.message==='User not found'){

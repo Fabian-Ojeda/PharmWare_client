@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from "react";
 import {useForm} from "react-hook-form";
 import {Link, useNavigate} from "react-router-dom"
+import SendData from "../Tools/SendData";
 
 const AddNewProduct = () => {
   const navigate = useNavigate();
@@ -11,18 +12,37 @@ const AddNewProduct = () => {
   });
 
   const [barCode, setBarcode] = useState(null)
-
+  const [responseSent, setResponseSent] = useState('')
+  const [errorCreating, setErrorCreating] = useState('')
   const {register, formState: {errors}, handleSubmit , setValue} = useForm()
 
-  const onSubmit = (data) => {
-    alert("Nos llega por ahora en la creación de un nuevo producto\n" +
+  const onSubmit = async (data) => {
+    setResponseSent('')
+    setErrorCreating('')
+    let newProduct = {}
+    newProduct.name = data.nameProduct
+    newProduct.category = data.category
+    newProduct.lab = data.laboratoryProduct
+    newProduct.price = data.salePrice
+    newProduct.unitSell = data.saleUnity
+    newProduct.location = data.ubicationProduct
+    newProduct.tax = data.tax
+    newProduct.barCode = data.barcode
+    newProduct.minQuant = data.minimumQuantity
+    newProduct.quant = 0
+    const response = await SendData('http://localhost:4000/inventory/create_product', newProduct)
+    if (response==='Created'){
+      setResponseSent('El producto se ha creado correctamente')
+    } else if (response==='Product already exists'){
+      setErrorCreating('Ya se encuentra registrado este codigo de barras, el producto ya existe')
+    }
+    /*alert("Nos llega por ahora en la creación de un nuevo producto\n" +
         "Nombre: "+data.nameProduct+"\nCategoria: "+data.category+"\nLaboratorio: "+data.laboratoryProduct+"\nPrecio de venta: "+data.salePrice+
-    "\nUnidad de venta: "+data.saleUnity)
+    "\nUnidad de venta: "+data.saleUnity)*/
   }
 
   const changeBarcode = () => {
-    setBarcode(12345)
-    //setValue("barcode", "12345")
+    setValue("barcode", 12345)
   }
 
   return(
@@ -152,7 +172,6 @@ const AddNewProduct = () => {
                   className="form-control"
                   type={'number'}
                   placeholder={"Codigo de barras"}
-                  value={barCode}
                   {...register("barcode",{
                   })}
               />
@@ -160,6 +179,16 @@ const AddNewProduct = () => {
             <div className={'row my-3'}>
               <Link to={'/Inventario'}><button className={'btn btn-danger'} style={{width:'100%'}} type={'button'}>Cancelar</button></Link>
             </div>
+          </div>
+          <div align={'center'}>
+            <span className="text-primary fs-3 d-block mt-3">
+                    {responseSent}
+                </span>
+          </div>
+          <div align={'center'}>
+            <span className="text-danger fs-3 d-block mt-3">
+              {errorCreating}
+                </span>
           </div>
         </form>
       </div>)

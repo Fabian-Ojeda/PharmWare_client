@@ -30,7 +30,7 @@ const TableInventory = (props) => {
     })
 
     const columns = [
-        {dataField: "idProductos", text:"Id Producto"},
+        {dataField: "idProductos", text:"#"},
         {dataField: "nombre", text:"Nombre"},
         {dataField: "categoria", text:"Categoria"},
         {dataField: "laboratorio", text:"Laboratorio"},
