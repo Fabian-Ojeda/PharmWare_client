@@ -8,9 +8,7 @@ const SendData = async (url, data) => {
             responseServer = response.data
             console.log(response.data)
         }
-        //console.log(response.data.rol);
     }).catch(function (error) {
-        responseServer = 'No se ha podido crear el producto'
         if(error.response.data.message){
             responseServer = error.response.data.message
         }else {

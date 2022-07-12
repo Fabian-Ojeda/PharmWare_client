@@ -4,7 +4,7 @@ import Loading from "./Loading";
 import useFetch from "../hooks/useFetch";
 
 const ContainerTableInventory = () => {
-    const { data, loading } = useFetch('http://localhost:4000/inventory/products')
+    const { data, loading } = useFetch('http://172.21.188.169:3000/inventory/products')
     if(loading)
         return <Loading />
 

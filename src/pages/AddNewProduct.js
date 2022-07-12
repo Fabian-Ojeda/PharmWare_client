@@ -30,15 +30,12 @@ const AddNewProduct = () => {
     newProduct.barCode = data.barcode
     newProduct.minQuant = data.minimumQuantity
     newProduct.quant = 0
-    const response = await SendData('http://localhost:4000/inventory/create_product', newProduct)
+    const response = await SendData('http://172.21.188.169:3000/inventory/create_product', newProduct)
     if (response==='Created'){
       setResponseSent('El producto se ha creado correctamente')
     } else if (response==='Product already exists'){
       setErrorCreating('Ya se encuentra registrado este codigo de barras, el producto ya existe')
     }
-    /*alert("Nos llega por ahora en la creación de un nuevo producto\n" +
-        "Nombre: "+data.nameProduct+"\nCategoria: "+data.category+"\nLaboratorio: "+data.laboratoryProduct+"\nPrecio de venta: "+data.salePrice+
-    "\nUnidad de venta: "+data.saleUnity)*/
   }
 
   const changeBarcode = () => {

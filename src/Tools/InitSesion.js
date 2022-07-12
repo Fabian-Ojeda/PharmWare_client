@@ -2,7 +2,7 @@ import axios from "axios";
 
 const InitSesion = async (usname, password) => {
     var responseServer = null
-    await axios.post('http://localhost:4000/auth/login', {
+    await axios.post('http://172.21.188.169:3000/auth/login', {
         username: usname,
         password: password
     }).then(function (response) {
