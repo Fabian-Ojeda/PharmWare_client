@@ -15,6 +15,7 @@ const TableInventory = (props) => {
     }
 
     const getProducts = () => {
+        setProducts([])
         const data = props.data
         for (let i = 0; i < data.length; i++) {
             data[i].button=<ButtonTable
@@ -22,7 +23,6 @@ const TableInventory = (props) => {
                 changeSelecteditem={changeSelectedItem}/>
         }
         setProducts(data)
-
     }
 
     useEffect(()=>{

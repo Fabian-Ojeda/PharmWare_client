@@ -8,7 +8,7 @@ const FormSearchProdUpdIn = (props) => {
   const [coincidences, setCoincidences] = useState([])
   const changeNameProduct = async (event) => {
     setCoincidences([])
-    const response = await SendData('http://'+ip+'/inventory/getProduct_name',{"name":event.target.value})
+    const response = await SendData('http://'+ip+'/inventory/search_by_name',{"name":event.target.value})
     if (Array.isArray(response)){
       if (response.length===0){
         //Sin coincidencias

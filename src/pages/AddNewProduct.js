@@ -120,6 +120,7 @@ const AddNewProduct = () => {
                 <option value="">Categoria</option>
                 <option value={"Medicamentos"}>Medicamentos</option>
                 <option value={"Perfumeria"}>Perfumeria</option>
+                <option value={"Helados"}>Helados</option>
                 <option value={"Miscelanea"}>Miscelanea</option>
                 <option value={"Papeleria"}>Papeleria</option>
               </select>

@@ -1,15 +1,20 @@
-import React from "react";
-import TableInventory from "./tableInventory";
-import Loading from "./Loading";
-import useFetch from "../hooks/useFetch";
+import React, {useState} from "react";
+import ContainerAllInventory from "./ContainerAllInventory";
+import ContainerWithFilter from "./ContainerWithFilter";
 
-const ContainerTableInventory = () => {
-    const ip = process.env.REACT_APP_IP_SERVER
-    const { data, loading } = useFetch('http://'+ip+'/inventory/products')
-    if(loading)
-        return <Loading />
+const ContainerTableInventory = (props) => {
+    console.log('llega de filtro: '+props.filter)
+    const filters = ["Medicamentos","Perfumeria","Helados","Miscelanea","Papeleria"]
+    switch (props.filter){
+        case 0:
+            return <ContainerAllInventory/>
+            break;
+        default:
+            return <ContainerWithFilter filter={filters[props.filter-1]}/>
+            break;
+    }
 
-    return <TableInventory data={data}></TableInventory>
+
 }
 
 export default ContainerTableInventory

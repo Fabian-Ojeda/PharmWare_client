@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import '../styles/Pages.css'
 import {BsSearch} from "react-icons/bs";
 import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css';
@@ -14,6 +14,10 @@ const Inventory = () => {
             navigate('/');
         }
     });
+    const [container, setContainer] = useState(<ContainerTableInventory filter={0}/>)
+    const changeFilter = (category) => {
+        setContainer(<ContainerTableInventory filter={category}/>)
+    }
 
     return(
         <div className={'container'}>
@@ -34,13 +38,22 @@ const Inventory = () => {
                         </button>
                         <ul className="dropdown-menu" aria-labelledby="dropdownMenu2">
                             <li>
-                                <button className="dropdown-item" type="button">Action</button>
+                                <button className="dropdown-item" type="button" onClick={() => changeFilter(0)}>Todas Las Categorias</button>
                             </li>
                             <li>
-                                <button className="dropdown-item" type="button">Another action</button>
+                                <button className="dropdown-item" type="button" onClick={() => changeFilter(1)}>Medicamentos</button>
                             </li>
                             <li>
-                                <button className="dropdown-item" type="button">Something else here</button>
+                                <button className="dropdown-item" type="button" onClick={() => changeFilter(2)}>Perfumeria</button>
+                            </li>
+                            <li>
+                                <button className="dropdown-item" type="button" onClick={() => changeFilter(3)}>Helados</button>
+                            </li>
+                            <li>
+                                <button className="dropdown-item" type="button" onClick={() => changeFilter(4)}>Miscelanea</button>
+                            </li>
+                            <li>
+                                <button className="dropdown-item" type="button" onClick={() => changeFilter(5)}>Papeleria</button>
                             </li>
                         </ul>
                     </div>
@@ -49,7 +62,7 @@ const Inventory = () => {
             </div>
             {/* Container tabla */}
             <div className={'tableInventory mt-5'}>
-                <ContainerTableInventory/>
+                {container}
             </div>
         </div>
     )
