@@ -30,10 +30,13 @@ const AddNewProduct = () => {
     newProduct.barCode = data.barcode
     newProduct.minQuant = data.minimumQuantity
     newProduct.quant = 0
-    const response = await SendData('http://172.21.188.169:3000/inventory/create_product', newProduct)
+    const ip = process.env.REACT_APP_IP_SERVER
+    const response = await SendData('http://'+ip+'/inventory/create_product', newProduct)
     if (response==='Created'){
       setResponseSent('El producto se ha creado correctamente')
+      setErrorCreating('')
     } else if (response==='Product already exists'){
+      setResponseSent('')
       setErrorCreating('Ya se encuentra registrado este codigo de barras, el producto ya existe')
     }
   }

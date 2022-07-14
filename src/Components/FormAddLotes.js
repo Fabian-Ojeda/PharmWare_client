@@ -2,15 +2,33 @@ import React , { useState } from "react";
 import { Controller, useForm} from "react-hook-form";
 import {BsCalendarEvent} from "react-icons/bs";
 import DatePicker, {registerLocale} from "react-datepicker";
+import SendData from "../Tools/SendData";
 import "react-datepicker/dist/react-datepicker.css";
 import es from 'date-fns/locale/es';
 registerLocale("es", es)
 
 const FormAddLotes = (props) => {
     const {register, formState: {errors}, handleSubmit, watch,control, setValue } = useForm()
-    const onSubmitValuesProduct = (data) => {
-        alert("Nos llega por ahora: "+data.quantityProduct+" "+data.priceProduct)
-        console.log(data)
+    const ip = process.env.REACT_APP_IP_SERVER
+    const onSubmitValuesProduct = async (data) => {
+        if (props.barCode === 0) {
+            alert("No se ha seleccionado un producto")
+        } else {
+            const dataToSend = {
+                "barCode": props.barCode,
+                "fecha_vencimiento": (data.expirationDate.getFullYear() + "/" + data.expirationDate.getMonth() + "/1"),
+                "cantidad": data.quantityProduct,
+                "id_proveedor": data.providers
+            }
+            const response = await SendData('http://'+ip+'/inventory/add_batch', dataToSend)
+            if(response==='OK'){
+                props.modifySuccessfull()
+            }else {
+                props.modifyFailed()
+            }
+            /*alert("Nos llega por ahora:\nCantidad: " + data.quantityProduct + "\nPrecio: " + data.priceProduct + "\nCodigo de barras: " + props.barCode + "\nProveedor: "
+                + data.providers + "\nFecha de vencimiento: " + data.expirationDate.getFullYear() + "/" + data.expirationDate.getMonth() + "/1")*/
+        }
     }
 
     if (props.changePrice==true){
@@ -26,8 +44,8 @@ const FormAddLotes = (props) => {
                     required:true
                 })}>
                     <option value="">Proveedor...</option>
-                    <option value="Coopidrogas">Coopidrogas</option>
-                    <option value="Laboratorios Aventis">Laboratorios Aventis</option>
+                    <option value={1}>Coopidrogas</option>
+                    <option value={2}>Laboratorios Aventis</option>
                 </select>
                 <span className="text-danger text-small d-block mt-1">
                         {errors.providers?.type === 'required' && "Por favor seleccione un proveedor"}

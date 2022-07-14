@@ -4,7 +4,8 @@ import Loading from "./Loading";
 import useFetch from "../hooks/useFetch";
 
 const ContainerTableInventory = () => {
-    const { data, loading } = useFetch('http://172.21.188.169:3000/inventory/products')
+    const ip = process.env.REACT_APP_IP_SERVER
+    const { data, loading } = useFetch('http://'+ip+'/inventory/products')
     if(loading)
         return <Loading />
 

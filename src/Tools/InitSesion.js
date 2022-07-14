@@ -1,8 +1,9 @@
 import axios from "axios";
 
 const InitSesion = async (usname, password) => {
+    const ip = process.env.REACT_APP_IP_SERVER
     var responseServer = null
-    await axios.post('http://172.21.188.169:3000/auth/login', {
+    await axios.post('http://'+ip+'/auth/login', {
         username: usname,
         password: password
     }).then(function (response) {

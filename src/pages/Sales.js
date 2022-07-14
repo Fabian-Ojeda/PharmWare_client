@@ -13,7 +13,6 @@ const Sales = () => {
     });
 
     const onChangeFunction = (item) => {
-        console.log("llego a la princila de ventas: ")
         setProducts([...products, item])
         console.log(item)
     }
@@ -75,7 +74,7 @@ const Sales = () => {
               <div className={'col'} align={'center'}><button className={'btn btn-secondary'} onClick={showHandleSearch} style={{width:'50%'}}>Buscar manualmente</button></div>
           </div>
           {/*Panel de busqueda manual*/}
-          {handleSearch ? <FormSearchProdUpdIn onChangeFunction={ onChangeFunction }/>:<span></span>}
+          {handleSearch ? <FormSearchProdUpdIn flag={1} onChangeFunction={ onChangeFunction }/>:<span></span>}
           {/*Table de ventas*/}
           <div className={'mt-4'}>
               <h2>Productos agregados</h2>

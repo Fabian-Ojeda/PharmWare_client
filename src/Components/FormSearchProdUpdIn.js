@@ -4,9 +4,11 @@ import SendData from "../Tools/SendData";
 
 const FormSearchProdUpdIn = (props) => {
 
-  const [coincidences, setCoincidences] = useState([{idProductos:4,nombre:"a"},{idProductos:5,nombre:"b"}])
+  const ip = process.env.REACT_APP_IP_SERVER
+  const [coincidences, setCoincidences] = useState([])
   const changeNameProduct = async (event) => {
-    const response = await SendData('http://172.21.188.169:3000/inventory/getProduct_name',{"name":event.target.value})
+    setCoincidences([])
+    const response = await SendData('http://'+ip+'/inventory/getProduct_name',{"name":event.target.value})
     if (Array.isArray(response)){
       if (response.length===0){
         //Sin coincidencias
@@ -18,8 +20,13 @@ const FormSearchProdUpdIn = (props) => {
     }
   }
   const coincidenceSelected = (selected) => {
-    let itemSelected = {id:selected.idProductos, name:selected.nombre,quantity:1 ,unitValue:selected.precio}
-    console.log(itemSelected)
+    let itemSelected ={}
+    if (props.flag === 1){
+      itemSelected = {id:selected.id_producto, name:selected.nombre,quantity:1 ,unitValue:selected.precio}
+    }else{
+      itemSelected = {name:selected.nombre,barCode:selected.codigo_barras}
+    }
+
     props.onChangeFunction(itemSelected)
   }
 

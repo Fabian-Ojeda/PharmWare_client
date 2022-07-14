@@ -6,7 +6,7 @@ const SendData = async (url, data) => {
         data).then(function (response) {
         if(response.data){
             responseServer = response.data
-            console.log(response.data)
+            //console.log(response.data)
         }
     }).catch(function (error) {
         if(error.response.data.message){

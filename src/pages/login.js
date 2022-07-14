@@ -7,7 +7,6 @@ import { useNavigate } from 'react-router-dom';
 const Login = (props) => {
 
     const [error, setError] = useState('')
-
     const navigate = useNavigate();
     useEffect(() => {
         if (localStorage.getItem("token")){
