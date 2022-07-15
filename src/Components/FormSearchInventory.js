@@ -11,13 +11,14 @@ const FormSearchInventory = () => {
     const {register, formState: {errors}, handleSubmit, watch,control, setValue } = useForm()
 
     return(
-        <div className="input-group tool searchItem">
             <form>
+                <div className="input-group tool">
                 <div className="input-group-text" id="btnGroupAddon"><BsSearch/></div>
                 <input type="text" className="form-control" placeholder="Buscar"
                        aria-label="Input group example" aria-describedby="btnGroupAddon" onChange={changeNameProduct}/>
+                </div>
             </form>
-        </div>
+
     )
 }
 

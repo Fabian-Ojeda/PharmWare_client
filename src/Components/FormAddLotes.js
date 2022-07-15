@@ -10,6 +10,8 @@ registerLocale("es", es)
 const FormAddLotes = (props) => {
     const {register, formState: {errors}, handleSubmit, watch,control, setValue } = useForm()
     const ip = process.env.REACT_APP_IP_SERVER
+    let minDate = new Date()
+    minDate.setMonth(minDate.getMonth()+1)
     const onSubmitValuesProduct = async (data) => {
         if (props.barCode === 0) {
             alert("No se ha seleccionado un producto")
@@ -82,7 +84,6 @@ const FormAddLotes = (props) => {
             </div>
             <div className={'form-group mt-3 row centerHorizontalELements'} align={'center'}>
                 <div className="groupCalendar">
-
                     <Controller
                         control={control}
                         name={'expirationDate'}
@@ -96,6 +97,7 @@ const FormAddLotes = (props) => {
                                 onChange={(date) => field.onChange(date)}
                                 selected={field.value}
                                 dateFormat="MM/yyyy"
+                                minDate={minDate}
                                 showMonthYearPicker
                             />
                         )}

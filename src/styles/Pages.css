@@ -23,8 +23,8 @@
     margin: 10px;
 }
 
-.searchItem{
-    width: 50%;
+.searchDiv{
+    position: absolute;
 }
 
 .tableInventory{
