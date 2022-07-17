@@ -13,9 +13,10 @@ const ItemSaleTable = (props) => {
   return(<tr>
       <td>{props.product.id}</td>
       <td>{props.product.name}</td>
-      <td><FormItemSaleTable
+      <td align={'center'}><FormItemSaleTable
           changeTotalValue={changeTotalValue}
           defaultValue={props.product.quantity}
+          maxQuantity={props.product.quantityInventory}
       /></td>
       <td>{props.product.unitValue}</td>
       <td>{totalValue}</td>

@@ -15,7 +15,6 @@ const Sales = () => {
 
     const onChangeFunction = (item) => {
         setProducts([...products, item])
-        console.log(item)
     }
 
     const [idCliente, setIdCliente] = useState(1)
@@ -72,7 +71,6 @@ const Sales = () => {
     const sendSale = () => {
         alert("Tenemos para enviar:\nId de cliente: "+idCliente+"\nFecha: "+today+"\nArticulos: "+products+"\nValor Total: "+totalSale)
     }
-
 
     useEffect(() => {
         calcTotalSale()

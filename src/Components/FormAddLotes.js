@@ -16,6 +16,7 @@ const FormAddLotes = (props) => {
         if (props.barCode === 0) {
             alert("No se ha seleccionado un producto")
         } else {
+            props.dataSended()
             const dataToSend = {
                 "barCode": props.barCode,
                 "fecha_vencimiento": (data.expirationDate.getFullYear() + "/" + data.expirationDate.getMonth() + "/1"),

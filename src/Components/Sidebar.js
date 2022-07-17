@@ -3,7 +3,6 @@ import {FaBars} from "react-icons/fa";
 import {NavLink} from "react-router-dom";
 import {BsCart, BsReverseLayoutTextSidebarReverse , BsClipboardCheck, BsPersonPlus, BsCurrencyDollar, BsQuestionCircle} from "react-icons/bs";
 import { RiLogoutBoxLine } from "react-icons/ri";
-import Sales from "../pages/Sales";
 import logoDrogueria from "../assets/Images/Logo Drogueria.PNG";
 import { useNavigate } from 'react-router-dom';
 
@@ -74,13 +73,14 @@ const Sidebar = (props) => {
                 <div className="position-sticky pt-3">
 
                     <div className='top_section'>
-                        <h1 style={{display:isOpen ? "block":"none"}} className='Logo'><img
-                            src={logoDrogueria}
-                            width="200%"
-                        /></h1>
-                        <div style={{marginLeft:isOpen ? "90px":"0px"}} className='bars'>
-                            <FaBars onClick={toggle}></FaBars>
-                        </div>
+                        <NavLink to={"/"}>
+                            <h1 style={{display:isOpen ? "block":"none"}} className='Logo'><img
+                                src={logoDrogueria}
+                                width="200%"
+                            /></h1></NavLink>
+                            <div style={{marginLeft:isOpen ? "90px":"0px"}} className='bars'>
+                                <FaBars onClick={toggle}></FaBars>
+                            </div>
                     </div>
                     {
                         menuItem.map((item, index)=>(

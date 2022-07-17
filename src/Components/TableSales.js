@@ -11,10 +11,10 @@ const TableSales = (props) => {
         <tr>
           <th>#</th>
           <th>Nombre</th>
-          <th>Cantidad</th>
-          <th>Valor Unitario</th>
-          <th>Valor Total</th>
-          <th>Eliminar</th>
+          <th style={{width:'10%'}}>Cantidad</th>
+          <th style={{width:'15%'}}>Valor Unitario</th>
+          <th style={{width:'15%'}}>Valor Total</th>
+          <th style={{width:'10%'}}>Eliminar</th>
         </tr>
         </thead>
         <tbody>

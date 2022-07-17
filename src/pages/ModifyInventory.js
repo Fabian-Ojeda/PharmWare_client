@@ -40,6 +40,11 @@ const ModifyInventory = (props) => {
         setErrorCreating('La agregación no se ha realizado correctamente')
     }
 
+    const dataSended = () => {
+        setResponseSent('')
+        setErrorCreating('')
+    }
+
     return(
         <div className={'container'}>
             <h1>Modificación de Inventario</h1>
@@ -59,6 +64,7 @@ const ModifyInventory = (props) => {
                         barCode={barCode}
                         modifySuccessfull={modifySuccessfull}
                         modifyFailed={modifyFailed}
+                        dataSended={dataSended}
                     />
                     {/*Panel de la calculadora*/}
                     <CalcSalePrice

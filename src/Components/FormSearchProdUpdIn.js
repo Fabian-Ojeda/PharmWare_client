@@ -22,7 +22,7 @@ const FormSearchProdUpdIn = (props) => {
   const coincidenceSelected = (selected) => {
     let itemSelected ={}
     if (props.flag === 1){
-      itemSelected = {id:selected.id_producto, name:selected.nombre,quantity:1 ,unitValue:selected.precio}
+      itemSelected = {id:selected.id_producto, name:selected.nombre,quantity:1 ,unitValue:selected.precio, quantityInventory:selected.cantidad}
     }else{
       itemSelected = {name:selected.nombre,barCode:selected.codigo_barras}
     }
