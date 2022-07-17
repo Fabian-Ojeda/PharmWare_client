@@ -2,13 +2,11 @@ import React from "react";
 import {useForm} from "react-hook-form";
 import {BsSearch} from "react-icons/bs";
 
-const FormSearchInventory = () => {
+const FormSearchInventory = (props) => {
 
     const changeNameProduct = (event) => {
-        alert("Esto esta escrito: "+event.target.value)
+        props.changeHandleSearch(event.target.value)
     }
-
-    const {register, formState: {errors}, handleSubmit, watch,control, setValue } = useForm()
 
     return(
             <form>

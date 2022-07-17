@@ -13,16 +13,20 @@ const Sidebar = (props) => {
     const [visibleAdminOptions, setVisibleAdminOptions] = useState('none')
     const endSession = () => {
         localStorage.removeItem("token")
+        localStorage.removeItem("rol")
         setVisible('none')
+        setVisibleAdminOptions('none')
         navigate('/');
     }
     useEffect(() => {
+
         if (localStorage.getItem("token")){
             setVisible('block')
         }
         if (localStorage.getItem("rol")==='admin'){
             setVisibleAdminOptions('block')
         }
+
     });
     const [isOpen, setIsOpen] = useState(false)
     const toggle = () => setIsOpen(!isOpen);
@@ -31,37 +35,37 @@ const Sidebar = (props) => {
             path:'/Ventas',
             name:"Ventas",
             icon:<BsCart/>,
-            display:"block"
+            displayVisible:"block"
         },
         {
             path:'/Inventario',
             name:"Inventario",
             icon:<BsReverseLayoutTextSidebarReverse/>,
-            display:"block"
+            displayVisible:"block"
         },
         {
             path:'/Formatos',
             name:"Formatos",
             icon:<BsClipboardCheck/>,
-            display:"block"
+            displayVisible:"block"
         },
         {
             path:'/AgregarUsuario',
             name:"Agregar Usuario",
             icon:<BsPersonPlus/>,
-            display:visibleAdminOptions
+            displayVisible:visibleAdminOptions
         },
         {
             path:'/Reportes',
             name:"Reportes",
             icon:<BsCurrencyDollar/>,
-            display:"block"
+            displayVisible:"block"
         },
         {
             path:'/InfoProducto',
             name:"Información de Producto",
             icon:<BsQuestionCircle/>,
-            display:"block"
+            displayVisible:"block"
         }
     ]
     return (
@@ -80,7 +84,7 @@ const Sidebar = (props) => {
                     </div>
                     {
                         menuItem.map((item, index)=>(
-                            <div style={{display:item.display}} key={index}>
+                            <div style={{display:item.displayVisible}} key={index}>
                                 <NavLink to={item.path} key={index} className='link' activateclassname='active'>
                                     <div className='icon'>{item.icon}</div>
                                     <div style={{display:isOpen ? "block":"none"}} className='link_text'>{item.name}</div>

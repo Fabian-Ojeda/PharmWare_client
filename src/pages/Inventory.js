@@ -15,8 +15,13 @@ const Inventory = () => {
         }
     });
     const [container, setContainer] = useState(<ContainerTableInventory filter={0}/>)
+    const [handleSearch, setHandleSearch] = useState('')
     const changeFilter = (category) => {
         setContainer(<ContainerTableInventory filter={category}/>)
+    }
+
+    const changeHandleSearch = (value) => {
+        setContainer(<ContainerTableInventory filter={6} name={value}/>)
     }
 
     return(
@@ -57,7 +62,7 @@ const Inventory = () => {
                             </li>
                         </ul>
                     </div>
-                    <FormSearchInventory/>
+                    <FormSearchInventory changeHandleSearch={changeHandleSearch}/>
                 </div>
             </div>
             {/* Container tabla */}

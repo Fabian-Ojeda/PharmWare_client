@@ -1,19 +1,17 @@
 import React, {useState} from "react";
 import ContainerAllInventory from "./ContainerAllInventory";
 import ContainerWithFilter from "./ContainerWithFilter";
+import ContainerSearchByName from "./ContainerSearchByName";
 
 const ContainerTableInventory = (props) => {
-    console.log('llega de filtro: '+props.filter)
     const filters = ["Medicamentos","Perfumeria","Helados","Miscelanea","Papeleria"]
-    switch (props.filter){
-        case 0:
-            return <ContainerAllInventory/>
-            break;
-        default:
-            return <ContainerWithFilter filter={filters[props.filter-1]}/>
-            break;
+    if (props.filter===0){
+        return <ContainerAllInventory/>
+    }else if (props.filter>=1 && props.filter<=5){
+        return <ContainerWithFilter filter={filters[props.filter-1]}/>
+    }else {
+        return <ContainerSearchByName name={props.name}/>
     }
-
 
 }
 

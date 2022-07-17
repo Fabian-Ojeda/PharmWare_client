@@ -4,7 +4,8 @@ import FormSearchProdUpdIn from "../Components/FormSearchProdUpdIn";
 import {Link, useNavigate} from "react-router-dom"
 
 const Sales = () => {
-
+    const dateTemp =  new Date()
+    const today = dateTemp.getDate()+"/"+(dateTemp.getMonth()+1)+"/"+dateTemp.getFullYear()
     const navigate = useNavigate();
     useEffect(() => {
         if (!localStorage.getItem("token")){
@@ -16,6 +17,8 @@ const Sales = () => {
         setProducts([...products, item])
         console.log(item)
     }
+
+    const [idCliente, setIdCliente] = useState(1)
 
     const [products, setProducts] = useState([])
 
@@ -61,6 +64,15 @@ const Sales = () => {
       alert("Se le imprime, claro que si")
     }
 
+    const changeIdUser = (event)=> {
+        setIdCliente(event.target.value)
+        event.preventDefault()
+    }
+
+    const sendSale = () => {
+        alert("Tenemos para enviar:\nId de cliente: "+idCliente+"\nFecha: "+today+"\nArticulos: "+products+"\nValor Total: "+totalSale)
+    }
+
 
     useEffect(() => {
         calcTotalSale()
@@ -75,6 +87,14 @@ const Sales = () => {
           </div>
           {/*Panel de busqueda manual*/}
           {handleSearch ? <FormSearchProdUpdIn flag={1} onChangeFunction={ onChangeFunction }/>:<span></span>}
+          {/*Cliente y fecha*/}
+          <div className={"row mt-5"}>
+              <div className={"col"}>
+                  <input style={{width: '50%'}} className={"form-control mr-5"} type={"number"}
+                  id={"idUsuario"} placeholder={"Id de Cliente"} onChange={changeIdUser}/>
+              </div>
+              <div className={"col"}><h4>Fecha: {today}</h4></div>
+          </div>
           {/*Table de ventas*/}
           <div className={'mt-4'}>
               <h2>Productos agregados</h2>
@@ -90,7 +110,7 @@ const Sales = () => {
               <div className={'col'}><h1>Valor total: {totalSale}</h1></div>
               <div className={'col'}>
                   <div className={'row mt-2'}>
-                      <div className={'col'} align={'right'}><button  className={'btn btn-primary'} data-bs-toggle="modal" data-bs-target="#ModalConfirmSale">Finalizar venta</button></div>
+                      <div className={'col'} align={'right'}><button  className={'btn btn-primary'} data-bs-toggle="modal" data-bs-target="#ModalConfirmSale" onClick={sendSale}>Finalizar venta</button></div>
                       <div className={'col'} align={'right'}><button className={'btn btn-danger mx-5'}>Cancelar Venta</button></div>
                   </div>
               </div>
