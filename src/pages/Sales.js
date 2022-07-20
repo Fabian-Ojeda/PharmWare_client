@@ -2,10 +2,14 @@ import React, {useState, useEffect } from "react";
 import TableSales from "../Components/TableSales";
 import FormSearchProdUpdIn from "../Components/FormSearchProdUpdIn";
 import {Link, useNavigate} from "react-router-dom"
+import {Modal, ModalHeader, ModalBody, ModalFooter} from "reactstrap";
+import SendData from "../Tools/SendData";
 
 const Sales = () => {
     const dateTemp =  new Date()
     const today = dateTemp.getDate()+"/"+(dateTemp.getMonth()+1)+"/"+dateTemp.getFullYear()
+    const todayToSend = dateTemp.getFullYear()+"/"+dateTemp.getMonth()+"/"+dateTemp.getDate()
+    const ip = process.env.REACT_APP_IP_SERVER
     const navigate = useNavigate();
     useEffect(() => {
         if (!localStorage.getItem("token")){
@@ -14,7 +18,11 @@ const Sales = () => {
     });
 
     const onChangeFunction = (item) => {
-        setProducts([...products, item])
+        if (item.quantityInventory===0){
+            alert("No existen unidades en el inventario de el producto seleccionado")
+        }else{
+            setProducts([...products, item])
+        }
     }
 
     const [idCliente, setIdCliente] = useState(1)
@@ -24,6 +32,8 @@ const Sales = () => {
     const [totalSale, setTotalSale] = useState(0)
 
     const [handleSearch, setHandleSearch] = useState(false)
+
+    const [showPrintShell, setShowPrintShell] = useState(false)
 
     const calcTotalSale = () => {
         let addSale = 0
@@ -61,6 +71,7 @@ const Sales = () => {
 
     const printBill = () => {
       alert("Se le imprime, claro que si")
+        cleanProducts()
     }
 
     const changeIdUser = (event)=> {
@@ -68,8 +79,26 @@ const Sales = () => {
         event.preventDefault()
     }
 
-    const sendSale = () => {
-        alert("Tenemos para enviar:\nId de cliente: "+idCliente+"\nFecha: "+today+"\nArticulos: "+products+"\nValor Total: "+totalSale)
+    const sendSale = async () => {
+        let productsToSend = []
+        products.forEach(element => productsToSend.push({product:element.id, quantity:element.quantity, total:element.unitValue*element.quantity}));
+        const dataToSend = {date:todayToSend, total:totalSale, user:1, client:idCliente, products:productsToSend}
+        const response = await SendData('http://'+ip+'/inventory/sale', dataToSend)
+        if (response==='OK'){
+            setShowPrintShell(true)
+        } else {
+            alert("llorela")
+        }
+        //alert("Tenemos para enviar:\nId de cliente: "+idCliente+"\nFecha: "+todayToSend+"\nArticulos: "+products+"\nValor Total: "+totalSale)
+    }
+
+    const cleanProducts = () => {
+        closePrintShell()
+        setProducts([])
+    }
+
+    const closePrintShell = () => {
+        setShowPrintShell(false)
     }
 
     useEffect(() => {
@@ -108,33 +137,27 @@ const Sales = () => {
               <div className={'col'}><h1>Valor total: {totalSale}</h1></div>
               <div className={'col'}>
                   <div className={'row mt-2'}>
-                      <div className={'col'} align={'right'}><button  className={'btn btn-primary'} data-bs-toggle="modal" data-bs-target="#ModalConfirmSale" onClick={sendSale}>Finalizar venta</button></div>
+                      <div className={'col'} align={'right'}><button  className={'btn btn-primary'} onClick={sendSale}>Finalizar venta</button></div>
                       <div className={'col'} align={'right'}><button className={'btn btn-danger mx-5'}>Cancelar Venta</button></div>
                   </div>
               </div>
           </div>
           {/*Modal de confirmación de venta*/}
-          <div className="modal fade" id="ModalConfirmSale" tabIndex="-1" aria-labelledby="exampleModalLabel"
-               aria-hidden="true">
-              <div className="modal-dialog modal-dialog-centered">
-                  <div className="modal-content">
-                      <div className="modal-header">
-                          <h5 className="modal-title" id="exampleModalLabel">Venta cerrada</h5>
-                          <button type="button" className="btn-close" data-bs-dismiss="modal"
-                                  aria-label="Close"></button>
-                      </div>
-                      <div className="modal-body">
-                          <h3>Valor total: ${totalSale}</h3>
-                          <br/>
-                          <h3>Desea imprimir factura</h3>
-                      </div>
-                      <div className="modal-footer">
-                          <button type="button" className="btn btn-secondary" data-bs-dismiss="modal" onClick={printBill}>Si</button>
-                          <button type="button" className="btn btn-primary" data-bs-dismiss="modal">No</button>
-                      </div>
-                  </div>
-              </div>
-          </div>
+          <Modal isOpen={showPrintShell}>
+              <ModalHeader>
+                  <h5 className="modal-title" id="exampleModalLabel">Venta cerrada</h5>
+                  <button type="button" className="btn-close" onClick={closePrintShell}></button>
+              </ModalHeader>
+              <ModalBody>
+                  <h3>Valor total: ${totalSale}</h3>
+                  <br/>
+                  <h3>Desea imprimir factura</h3>
+              </ModalBody>
+              <ModalFooter>
+                  <button type="button" className="btn btn-secondary" data-bs-dismiss="modal" onClick={printBill}>Si</button>
+                  <button type="button" className="btn btn-primary" data-bs-dismiss="modal" onClick={cleanProducts}>No</button>
+              </ModalFooter>
+          </Modal>
       </div>
   )
 }
