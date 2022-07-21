@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import axios from "axios";
 
-const useAxiosPost = (url, body) => {
+const useAxiosPost = (url, body, flag) => {
     const [ data, setData ] = useState([])
     const [ loading, setLoading ] = useState(true)
     const [ error, setError ] = useState(null)
@@ -19,8 +19,7 @@ const useAxiosPost = (url, body) => {
             });
         }
         axiosResource()
-
-    })
+    }, [flag])
 
     return { data, loading, error }
 }
