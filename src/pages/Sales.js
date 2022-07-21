@@ -146,7 +146,6 @@ const Sales = () => {
           <Modal isOpen={showPrintShell}>
               <ModalHeader>
                   <h5 className="modal-title" id="exampleModalLabel">Venta cerrada</h5>
-                  <button type="button" className="btn-close" onClick={closePrintShell}></button>
               </ModalHeader>
               <ModalBody>
                   <h3>Valor total: ${totalSale}</h3>

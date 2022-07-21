@@ -18,28 +18,36 @@ const ModifyInventory = (props) => {
     const [changePrice, setChangePrice] = useState(false)
     const [nameProduct, setNameProduct] = useState('')
     const [barCode, setBarCode] = useState(0)
+    const [idProduct, setIdProduct] = useState(0)
+//---------------------Función para cambiar el valor del precio de venta
     const changeSalePrice = (salePriceIn) => {
         setSalePrice(prevValue => salePriceIn)
         setChangePrice(true)
     }
+//----------------------Función para reiniciar la bandera de cambio de precio la cual esta siendo observada desde
+// ---------------------el componente hijo FormAddLotes
     const priceChanged = () => {
         setChangePrice(false)
     }
+//---------------------Función que pinta el nombre del producto seleccionada y almacena el codigo de barras
+// --------------------del producto para usarlo en la petición y con él identificar el producto al que se le
+// --------------------van a agregar lotes
     const onChangeFunction = (item) => {
         setNameProduct(item.name)
         setBarCode(item.barCode)
+        setIdProduct(item.id)
     }
-
+//------------Metodo para pintar que la creación fue correcta
     const modifySuccessfull = () => {
         setErrorCreating('')
         setResponseSent('Agregación realizada correctamente')
     }
-
+//----------Metodo para pintar que hubo error en la creación
     const modifyFailed = () => {
         setResponseSent('')
         setErrorCreating('La agregación no se ha realizado correctamente')
     }
-
+//----------Metodo para borrar las respuestas previas de modificación
     const dataSended = () => {
         setResponseSent('')
         setErrorCreating('')
@@ -62,6 +70,7 @@ const ModifyInventory = (props) => {
                         changePrice={changePrice}
                         setChangePrice={priceChanged}
                         barCode={barCode}
+                        idProduct={idProduct}
                         modifySuccessfull={modifySuccessfull}
                         modifyFailed={modifyFailed}
                         dataSended={dataSended}

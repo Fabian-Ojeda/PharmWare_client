@@ -12,6 +12,8 @@ const FormAddLotes = (props) => {
     const ip = process.env.REACT_APP_IP_SERVER
     let minDate = new Date()
     minDate.setMonth(minDate.getMonth()+1)
+
+    //------------Función que se ejecuta en el submit del formulario
     const onSubmitValuesProduct = async (data) => {
         if (props.barCode === 0) {
             alert("No se ha seleccionado un producto")
@@ -25,12 +27,21 @@ const FormAddLotes = (props) => {
             }
             const response = await SendData('http://'+ip+'/inventory/add_batch', dataToSend)
             if(response==='OK'){
-                props.modifySuccessfull()
+                let priceNow = await SendData('http://'+ip+'/inventory/get_price',{id_product:props.idProduct})
+                if (priceNow!=data.priceProduct){
+                    const response2 = await SendData('http://'+ip+'/inventory/update_price', {id_product:props.idProduct, price:data.priceProduct})
+                    if(response2==='OK'){
+                        props.modifySuccessfull()
+                    }else{
+                        props.modifyFailed()
+                    }
+                }else {
+                    props.modifySuccessfull()
+                }
+
             }else {
                 props.modifyFailed()
             }
-            /*alert("Nos llega por ahora:\nCantidad: " + data.quantityProduct + "\nPrecio: " + data.priceProduct + "\nCodigo de barras: " + props.barCode + "\nProveedor: "
-                + data.providers + "\nFecha de vencimiento: " + data.expirationDate.getFullYear() + "/" + data.expirationDate.getMonth() + "/1")*/
         }
     }
 
