@@ -18,9 +18,10 @@ const TableSales = (props) => {
         </tr>
         </thead>
         <tbody>
-        {props.products.map((item) => (
+        {props.products.map((item, index) => (
             <ItemSaleTable
                 key={item.id}
+                index={index}
                 product={item}
                 modifyQuantity={props.modifyQuantity}
                 deleteItem={props.deleteItem}/>

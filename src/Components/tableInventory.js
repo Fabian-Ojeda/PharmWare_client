@@ -88,8 +88,8 @@ const TableInventory = (props) => {
     })
 
     const columns = [
-        {dataField: "idProductos", text:"#",headerStyle: (column, colIndex) => {
-                return { width: '4vh' }}},
+        {dataField: "rowNumber", text:"#",headerStyle: (column, colIndex) => {
+                return { width: '6vh' }},formatter: (cell, row, rowIndex) => <td>{rowIndex+1}</td>},
         {dataField: "nombre", text:"Nombre", sort: true},
         {dataField: "categoria", text:"Categoria",headerStyle: (column, colIndex) => {
                 return { width: '17vh' }}},
@@ -123,6 +123,7 @@ const TableInventory = (props) => {
             defaultSorted={ defaultSorted }
             pagination={paginationFactory(options)}
             noDataIndication="No se han recibido datos"
+
             hover
             condensed/>
 

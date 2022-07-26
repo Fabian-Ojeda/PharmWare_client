@@ -8,22 +8,22 @@ import { useNavigate } from 'react-router-dom';
 
 const Sidebar = (props) => {
     const navigate = useNavigate();
-    const [visible, setVisible] = useState('none')
-    const [visibleAdminOptions, setVisibleAdminOptions] = useState('none')
+
+
     const endSession = () => {
         localStorage.removeItem("token")
         localStorage.removeItem("rol")
-        setVisible('none')
-        setVisibleAdminOptions('none')
+        props.changeVisibilitySideBar('none')
+        props.changeVisibilityAdminOptions('none')
         navigate('/');
     }
     useEffect(() => {
 
         if (localStorage.getItem("token")){
-            setVisible('block')
+            props.changeVisibilitySideBar('block')
         }
         if (localStorage.getItem("rol")==='admin'){
-            setVisibleAdminOptions('block')
+            props.changeVisibilityAdminOptions('block')
         }
 
     });
@@ -52,7 +52,7 @@ const Sidebar = (props) => {
             path:'/AgregarUsuario',
             name:"Agregar Usuario",
             icon:<BsPersonPlus/>,
-            displayVisible:visibleAdminOptions
+            displayVisible:props.visibleAdminOptions
         },
         {
             path:'/Reportes',
@@ -69,7 +69,7 @@ const Sidebar = (props) => {
     ]
     return (
         <div className='contPers'>
-            <nav style={{width:isOpen ? "250px":"50px", display:visible}} className='sidebar '>
+            <nav style={{width:isOpen ? "250px":"50px", display:props.visible}} className='sidebar '>
                 <div className="position-sticky pt-3">
 
                     <div className='top_section'>
@@ -78,9 +78,9 @@ const Sidebar = (props) => {
                                 src={logoDrogueria}
                                 width="200%"
                             /></h1></NavLink>
-                            <div style={{marginLeft:isOpen ? "90px":"0px"}} className='bars'>
-                                <FaBars onClick={toggle}></FaBars>
-                            </div>
+                        <div style={{marginLeft:isOpen ? "90px":"0px"}} className='bars'>
+                            <FaBars onClick={toggle}></FaBars>
+                        </div>
                     </div>
                     {
                         menuItem.map((item, index)=>(
@@ -92,7 +92,7 @@ const Sidebar = (props) => {
                             </div>
                         ))
                     }
-                    <button className='btn link' activateclassname='active' style={{width:'100%'}} onClick={endSession}>
+                    <button className='btn link' activateclassname='active' style={{width:'100%'}} onClick={props.endSession}>
                         <div className='icon'>{<RiLogoutBoxLine/>}</div>
                         <div style={{display:isOpen ? "block":"none"}} className='link_text'>{"Salir"}</div>
                     </button>

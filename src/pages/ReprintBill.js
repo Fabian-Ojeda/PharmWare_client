@@ -19,7 +19,8 @@ const ReprintBill = () => {
         ,{id:4,hour:'08:56 a.m'},{id:5,hour:'09:41 a.m'},{id:6,hour:'06:12 p.m'},{id:7,hour:'10:14 a.m'},{id:8,hour:'05:02 p.m'},
         {id:9,hour:'11:58 a.m'}])
     const onSubmit = (data) => {
-        alert("Nos llego la fecha "+data.dateBill)
+        let dataToSend = data.dateBill.getFullYear()+"/"+data.dateBill.getMonth()+"/"+data.dateBill.getDate()
+        alert("Nos llego la fecha "+dataToSend)
         console.log(data)
     }
 
@@ -42,6 +43,7 @@ const ReprintBill = () => {
                                 onChange={(date) => field.onChange(date)}
                                 selected={field.value}
                                 dateFormat="dd/MM/yyyy"
+                                maxDate={new Date()}
                             />
                         )}
                     />

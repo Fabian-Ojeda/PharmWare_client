@@ -11,7 +11,7 @@ const ItemSaleTable = (props) => {
     }
 
   return(<tr>
-      <td>{props.product.id}</td>
+      <td>{(props.index+1)}</td>
       <td>{props.product.name}</td>
       <td align={'center'}><FormItemSaleTable
           changeTotalValue={changeTotalValue}

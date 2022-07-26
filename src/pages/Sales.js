@@ -11,6 +11,7 @@ const Sales = () => {
     const todayToSend = dateTemp.getFullYear()+"/"+dateTemp.getMonth()+"/"+dateTemp.getDate()
     const ip = process.env.REACT_APP_IP_SERVER
     const navigate = useNavigate();
+
     useEffect(() => {
         if (!localStorage.getItem("token")){
             navigate('/');
@@ -21,7 +22,16 @@ const Sales = () => {
         if (item.quantityInventory===0){
             alert("No existen unidades en el inventario de el producto seleccionado")
         }else{
-            setProducts([...products, item])
+            let indicator = 0
+            products.forEach((element)=>{
+                if(element.id===item.id){
+                    alert("El producto ya se encuentra en la venta actual")
+                    indicator=1
+                }
+            })
+            if (indicator===0){
+                setProducts([...products, item])
+            }
         }
     }
 
@@ -89,7 +99,6 @@ const Sales = () => {
         } else {
             alert("llorela")
         }
-        //alert("Tenemos para enviar:\nId de cliente: "+idCliente+"\nFecha: "+todayToSend+"\nArticulos: "+products+"\nValor Total: "+totalSale)
     }
 
     const cleanProducts = () => {
