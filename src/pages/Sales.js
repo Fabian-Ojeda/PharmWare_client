@@ -90,9 +90,15 @@ const Sales = () => {
     }
 
     const sendSale = async () => {
+        let idClientToSend = 0
+        if(idCliente===''){
+            idClientToSend=1
+        }else{
+            idClientToSend=idCliente
+        }
         let productsToSend = []
         products.forEach(element => productsToSend.push({product:element.id, quantity:element.quantity, total:element.unitValue*element.quantity}));
-        const dataToSend = {date:todayToSend, total:totalSale, user:1, client:idCliente, products:productsToSend}
+        const dataToSend = {date:todayToSend, total:totalSale, user:1, client:idClientToSend, products:productsToSend}
         const response = await SendData('http://'+ip+'/inventory/sale', dataToSend)
         if (response==='OK'){
             setShowPrintShell(true)

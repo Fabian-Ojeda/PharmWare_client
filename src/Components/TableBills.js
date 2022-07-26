@@ -53,8 +53,16 @@ const TableBills = (props) => {
                             <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div className="modal-body">
+                            <div className={'row'}>
+                                <div className={'col'}><h5>Cliente: </h5></div>
+                                <div className={'col'}><h5>Fecha: </h5></div>
+                            </div>
+                            <div className={'mt-3 mb-3'}>
+                                <h4>Productos</h4>
+                            </div>
                             <TableReprintBillProduct
                             idBill={props.bills[billselected].id}/>
+                            <div className={'mt-2'}><h3>Total: </h3></div>
                         </div>
                         <div className="modal-footer">
                             <button type="button" className="btn btn-primary" data-bs-dismiss="modal" onClick={() => printBill(props.bills[billselected].id)}>Imprimir</button>

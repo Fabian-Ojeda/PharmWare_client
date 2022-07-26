@@ -6,6 +6,7 @@ import ContainerTableTempHume from "./ContainerTableTempHume";
 
 const ShowFormatTemHum = () => {
 
+  const [minDate, setMinDate] = useState(new Date(2020, 11, 25))
   const [visibleTable, setVisibleTable] = useState('none')
   const {register, formState: {errors}, handleSubmit,control } = useForm()
   const onSubmit = (data) => {
@@ -30,9 +31,11 @@ const ShowFormatTemHum = () => {
                         className={'form-control'}
                         placeholderText={"Fecha Inicial"}
                         locale={"es"}
-                        onChange={(date) => field.onChange(date)}
+                        onChange={(date) => {field.onChange(date)
+                                              setMinDate(date)}}
                         selected={field.value}
                         dateFormat="dd/MM/yyyy"
+                        maxDate={new Date()}
                     />
                 )}
             />
@@ -60,6 +63,8 @@ const ShowFormatTemHum = () => {
                         onChange={(date) => field.onChange(date)}
                         selected={field.value}
                         dateFormat="dd/MM/yyyy"
+                        maxDate={new Date()}
+                        minDate={minDate}
                     />
                 )}
             />

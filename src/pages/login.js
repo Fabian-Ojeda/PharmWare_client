@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 const Login = (props) => {
 
     const [error, setError] = useState('')
+    const [initSessionMessage, setInitSessionMessage] = useState('')
     const navigate = useNavigate();
     useEffect(() => {
         if (localStorage.getItem("token")){
@@ -17,10 +18,13 @@ const Login = (props) => {
     const {register, formState: {errors}, handleSubmit} = useForm()
 
     const onSubmit = async (data) => {
+        setInitSessionMessage('Iniciando Sesión...')
+        setError('')
         const response = await InitSesion(data.userName, data.password)
         if (response.token) {
             props.changeToken(response.token, response.rol)
         } else {
+            setInitSessionMessage('')
             setError(response)
         }
     }
@@ -75,7 +79,9 @@ const Login = (props) => {
                 <span className="text-danger fs-3 d-block mt-3">
                     {error}
                 </span>
-
+                <span className="text-primary fs-3 d-block mt-3">
+                    {initSessionMessage}
+                </span>
             </form>
         </div>
 
