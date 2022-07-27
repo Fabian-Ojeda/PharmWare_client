@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import { Table } from 'react-bootstrap';
 
-const TableReprintBillProduct = () => {
+const TableReprintBillProduct = (props) => {
   const [products, setProducts] = useState([{id:0, name:'Acetaminofen Tabletas 500mg',quantity:1,unitValue:1000, totalValue:25000},
     {id:1, name:'Suero Pedialyte Frasco 200ml',quantity:9,unitValue:6500, totalValue:2000},
     {id:2, name:'Amoxicilina Tabletas 500mg',quantity:5,unitValue:4500, totalValue:200},

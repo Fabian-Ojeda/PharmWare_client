@@ -15,13 +15,10 @@ const ReprintBill = () => {
         }
     });
     const {register, formState: {errors}, handleSubmit, control, setValue } = useForm()
-    const [bills, setBills] = useState([{id:0,hour:'12:32 m'},{id:1,hour:'10:26 a.m'},{id:2,hour:'07:12 a.m'},{id:3,hour:'05:10 a.m'}
-        ,{id:4,hour:'08:56 a.m'},{id:5,hour:'09:41 a.m'},{id:6,hour:'06:12 p.m'},{id:7,hour:'10:14 a.m'},{id:8,hour:'05:02 p.m'},
-        {id:9,hour:'11:58 a.m'}])
+    const [dateSelected, setDateSelected] = useState(new Date().getFullYear()+"/"+new Date().getMonth()+"/"+new Date().getDate())
     const onSubmit = (data) => {
         let dataToSend = data.dateBill.getFullYear()+"/"+data.dateBill.getMonth()+"/"+data.dateBill.getDate()
-        alert("Nos llego la fecha "+dataToSend)
-        console.log(data)
+        setDateSelected(dataToSend)
     }
 
     return(<div className={"container"}>
@@ -58,7 +55,7 @@ const ReprintBill = () => {
         </div>
         <div className={'mt-5'}>
             <ContainerTableBills
-                bills={bills}
+                dateSelected={dateSelected}
             />
         </div>
     </div>)
