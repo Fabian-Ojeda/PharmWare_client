@@ -1,16 +1,17 @@
 import React, {useState} from "react";
 import {BrowserRouter, Route, Routes} from 'react-router-dom'
 import Login from "./pages/login";
-import MainWindow from "./pages/MainWindow";
 import Inventory from "./pages/Inventory";
 import Sidebar from "./Components/Sidebar";
 import Welcome from "./pages/Welcome";
 import Sales from "./pages/Sales";
 import Formats from "./pages/Formats";
 import AddUser from "./pages/AddUser";
+import AddProviders from "./pages/AddProviders";
 import Reports from "./pages/Reports";
 import InfoProduct from "./pages/InfoProduct";
 import UpdateInventory from "./pages/UpdateInventory";
+import AddQuantityToProduct from "./pages/AddQuantityToProduct";
 import ModifyInventory from "./pages/ModifyInventory";
 import AddNewProduct from "./pages/AddNewProduct";
 import ReprintBill from "./pages/ReprintBill";
@@ -87,10 +88,12 @@ function App() {
                         <Route path='/Ventas/ReimprimirFacturas' element={<ReprintBill/>}/>
                         <Route path='/Inventario' element={<Inventory/>}/>
                         <Route path='/Inventario/ActualizarInventario' element={<UpdateInventory/>}/>
-                        <Route path='/Inventario/ActualizarInventario/AgregarAlInventario' element={<ModifyInventory number={1}/>}/>
+                        <Route path='/Inventario/ActualizarInventario/AgregarAlInventario' element={<ModifyInventory/>}/>
+                        <Route path='/Inventario/ActualizarInventario/AgregarUnidades' element={<AddQuantityToProduct/>}/>
                         <Route path='/Inventario/ActualizarInventario/CrearProducto' element={<AddNewProduct/>}/>
                         <Route path='/Formatos' element={<Formats/>}/>
                         <Route path='/AgregarUsuario' element={<AddUser/>}/>
+                        <Route path='/AgregarProveedor' element={<AddProviders/>}/>
                         <Route path='/Reportes' element={<Reports/>}/>
                         <Route path='/InfoProducto' element={<InfoProduct/>}/>
                         <Route path="*" element={<h1>Pagina no encontrada</h1>}/>

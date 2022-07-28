@@ -2,10 +2,12 @@ import React, {useState, useEffect} from "react";
 import paginationFactory from "react-bootstrap-table2-paginator";
 import BootstrapTable from "react-bootstrap-table-next";
 import TableReprintBillProduct from "./TableReprintBillProduct";
+import ContainerTableRePrintBills from "./ContainerTableRePrintBills";
 
 const TableBills = (props) => {
 
     const [billselected, setBillSelected] = useState(0)
+    const [detailsBillSelected, setDetailsBillSelected] = useState({})
     const [bills, setBills] = useState([])
     const columns = [
         {dataField: "id_venta", text:"Id Venta"},
@@ -15,6 +17,11 @@ const TableBills = (props) => {
 
     const changeBillSelected = (id) => {
         setBillSelected(id)
+        props.bills.forEach((item)=>{
+            if(item.id_venta===id){
+                setDetailsBillSelected({id_cliente:item.id_cliente, fecha:item.fecha, valor_total:item.valor_total})
+            }
+        })
     }
 
     const printBill = (id) => {
@@ -31,6 +38,7 @@ const TableBills = (props) => {
     }
 
     useEffect(() => {
+        //console.log(props.bills)
         getBills()
     });
 
@@ -57,15 +65,15 @@ const TableBills = (props) => {
                             <h5>Id de factura: {billselected}</h5>
                         </div>
                         <div className={'row'}>
-                            <div className={'col'}><h5>Cliente: </h5></div>
-                            <div className={'col'}><h5>Fecha: </h5></div>
+                            <div className={'col'}><h5>Cliente: {detailsBillSelected.id_cliente}</h5></div>
+                            <div className={'col'}><h5>Fecha: {detailsBillSelected.fecha}</h5></div>
                         </div>
                         <div className={'mt-3 mb-3'}>
                             <h4>Productos</h4>
                         </div>
-                        <TableReprintBillProduct
-                            idBill={billselected}/>
-                        <div className={'mt-2'}><h3>Total: </h3></div>
+                        <ContainerTableRePrintBills
+                            saleId={billselected}/>
+                        <div className={'mt-2'}><h3>Total: {detailsBillSelected.valor_total}</h3></div>
                     </div>
                     <div className="modal-footer">
                         <button type="button" className="btn btn-primary" data-bs-dismiss="modal" onClick={() => printBill(billselected)}>Imprimir</button>

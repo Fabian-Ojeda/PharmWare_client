@@ -9,6 +9,9 @@ const AddUser = () => {
         if (!localStorage.getItem("token")){
             navigate('/');
         }
+        if(localStorage.getItem("rol")!='admin'){
+            navigate('/');
+        }
     });
     const onSubmit = (data) => {
         if (data.passwordUser!=data.passwordX2){
@@ -18,7 +21,6 @@ const AddUser = () => {
             navigate('/Main');
 
         }
-        /*console.log(data)*/
     }
 
     return(

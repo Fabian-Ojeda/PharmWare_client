@@ -1,6 +1,7 @@
 import React, {useEffect} from "react";
 import logoDrogueria from "../assets/Images/Logo Drogueria.PNG";
 import { useNavigate } from 'react-router-dom';
+import '../styles/Main.css'
 
 const Welcome = () => {
   const navigate = useNavigate();

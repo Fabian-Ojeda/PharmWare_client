@@ -24,13 +24,13 @@ const TableReprintBillProduct = (props) => {
       </tr>
       </thead>
       <tbody>
-      {products.map((item)=>(
-          <tr key={item.id}>
-            <td>{item.id}</td>
-            <td>{item.name}</td>
-            <td>{item.quantity}</td>
-            <td>{item.unitValue}</td>
-            <td>{item.totalValue}</td>
+      {props.products.map((item)=>(
+          <tr key={item.id_producto}>
+            <td>{item.id_producto}</td>
+            <td>{item.nombre}</td>
+            <td>{item.cantidad}</td>
+            <td>{(item.valor_total)/(item.cantidad)}</td>
+            <td>{item.valor_total}</td>
           </tr>
       ))}
       </tbody>

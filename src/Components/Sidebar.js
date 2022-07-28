@@ -1,7 +1,7 @@
 import React, {useState , useEffect} from "react";
 import {FaBars} from "react-icons/fa";
 import {NavLink} from "react-router-dom";
-import {BsCart, BsReverseLayoutTextSidebarReverse , BsClipboardCheck, BsPersonPlus, BsCurrencyDollar, BsQuestionCircle} from "react-icons/bs";
+import {BsCart, BsReverseLayoutTextSidebarReverse , BsClipboardCheck, BsPersonPlus, BsCurrencyDollar, BsQuestionCircle, BsBagPlus} from "react-icons/bs";
 import { RiLogoutBoxLine } from "react-icons/ri";
 import logoDrogueria from "../assets/Images/Logo Drogueria.PNG";
 import { useNavigate } from 'react-router-dom';
@@ -52,6 +52,12 @@ const Sidebar = (props) => {
             path:'/AgregarUsuario',
             name:"Agregar Usuario",
             icon:<BsPersonPlus/>,
+            displayVisible:props.visibleAdminOptions
+        },
+        {
+            path:'/AgregarProveedor',
+            name:'Agregar Proveedor',
+            icon: <BsBagPlus/>,
             displayVisible:props.visibleAdminOptions
         },
         {

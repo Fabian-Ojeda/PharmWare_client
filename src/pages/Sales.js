@@ -3,7 +3,7 @@ import TableSales from "../Components/TableSales";
 import FormSearchProdUpdIn from "../Components/FormSearchProdUpdIn";
 import {Link, useNavigate} from "react-router-dom"
 import {Modal, ModalHeader, ModalBody, ModalFooter} from "reactstrap";
-import SendData from "../Tools/SendData";
+import SendDataWithHeaders from "../Tools/SendDataWithHeaders";
 
 const Sales = () => {
     const dateTemp =  new Date()
@@ -99,7 +99,8 @@ const Sales = () => {
         let productsToSend = []
         products.forEach(element => productsToSend.push({product:element.id, quantity:element.quantity, total:element.unitValue*element.quantity}));
         const dataToSend = {date:todayToSend, total:totalSale, user:1, client:idClientToSend, products:productsToSend}
-        const response = await SendData('http://'+ip+'/inventory/sale', dataToSend)
+        const response = await SendDataWithHeaders('http://'+ip+'/inventory/sale', dataToSend)
+        //const response = await SendData('http://'+ip+'/inventory/sale', dataToSend)
         if (response==='OK'){
             setShowPrintShell(true)
         } else {
