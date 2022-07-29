@@ -3,15 +3,16 @@ import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css'
 import paginationFactory from "react-bootstrap-table2-paginator";
 import BootstrapTable from "react-bootstrap-table-next";
 import ButtonTable from "./ButtonTable";
-import TableLotes from "./TableLotes";
+import ContainerTableLotes from "./ContainerTableLotes";
 
 const TableInventory = (props) => {
 
     const [products, setProducts] = useState([]);
-
+    const [componentShowLotes, setComponentShowLotes] = useState(<br/>)
     const [itemSelected, setItemSelected] = useState(null)
 
-    const changeSelectedItem = (item) => {
+    const changeSelectedItem = (item, idItem) => {
+        setComponentShowLotes(<ContainerTableLotes idProduct={idItem}/>)
         setItemSelected(item)
     }
 
@@ -21,7 +22,8 @@ const TableInventory = (props) => {
         for (let i = 0; i < data.length; i++) {
             data[i].button=<ButtonTable
                 name={data[i].nombre}
-                changeSelecteditem={changeSelectedItem}/>
+                changeSelecteditem={changeSelectedItem}
+                idProduct={data[i].id_producto}/>
         }
         setProducts(data)
     }
@@ -138,7 +140,7 @@ const TableInventory = (props) => {
                     </div>
                     <div className="modal-body">
                         {itemSelected}
-                        <TableLotes/>
+                        {componentShowLotes}
                     </div>
                     <div className="modal-footer">
                         <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>

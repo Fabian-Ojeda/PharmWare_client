@@ -13,7 +13,10 @@ const ModifyInventory = (props) => {
         if (!localStorage.getItem("token")){
             navigate('/');
         }else{
+            if (consume === 0){
                 getProviders()
+                setConsume(1)
+            }
         }
     });
 
@@ -21,7 +24,7 @@ const ModifyInventory = (props) => {
         let providersIn = await consumeAPI('http://' + ip + '/inventory/get_supplier')
         setProviders(providersIn)
     }
-
+    const [consume, setConsume] = useState(0)
     const [providers, setProviders] = useState([])
     const [responseSent, setResponseSent] = useState('')
     const [errorCreating, setErrorCreating] = useState('')

@@ -1,12 +1,11 @@
 import React, {useState}from "react";
 import { Table } from 'react-bootstrap';
 
-const TableLotes = () => {
+const TableLotes = (props) => {
 
-    const [lotes, setLotes] = useState([{id:1, cantidad:53, expirDate:'25/08/2023'},
-        {id:2, cantidad:12, expirDate:'14/02/2030'},
-        {id:3, cantidad:74, expirDate:'24/01/2025'},
-        {id:4, cantidad:36, expirDate:'15/09/2024'}])
+    const deleteLote = (idLote) => {
+        alert ("Vamos a borrar el "+idLote)
+    }
 
     return(
         <div>
@@ -16,14 +15,16 @@ const TableLotes = () => {
                     <th>#</th>
                     <th>Cantidad</th>
                     <th>Fecha de vencimiento</th>
+                    <th>Borrar</th>
                 </tr>
                 </thead>
                 <tbody>
-                    {lotes.map((item) => (
-                        <tr key={item.id}>
-                            <td>{item.id}</td>
+                    {props.data.map((item, index) => (
+                        <tr key={item.id_lote}>
+                            <td>{index+1}</td>
                             <td>{item.cantidad}</td>
-                            <td>{item.expirDate}</td>
+                            <td>{item.fecha_vencimiento.slice(0,7)}</td>
+                            <td><button className={'btn btn-danger'} onClick={() => deleteLote(item.id_lote)}>Borrar</button></td>
                         </tr>
                     ))}
                 </tbody>
