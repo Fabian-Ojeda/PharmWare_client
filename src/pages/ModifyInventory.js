@@ -4,14 +4,25 @@ import FormAddLotes from "../Components/FormAddLotes";
 import CalcSalePrice from "../Components/CalcSalePrice";
 import FormSearchProdUpdIn from "../Components/FormSearchProdUpdIn";
 import {useNavigate} from "react-router-dom"
+import consumeAPI from "../Tools/consumeAPI";
 
 const ModifyInventory = (props) => {
+    const ip = process.env.REACT_APP_IP_SERVER
     const navigate = useNavigate();
     useEffect(() => {
         if (!localStorage.getItem("token")){
             navigate('/');
+        }else{
+                getProviders()
         }
     });
+
+    const getProviders = async () => {
+        let providersIn = await consumeAPI('http://' + ip + '/inventory/get_supplier')
+        setProviders(providersIn)
+    }
+
+    const [providers, setProviders] = useState([])
     const [responseSent, setResponseSent] = useState('')
     const [errorCreating, setErrorCreating] = useState('')
     const [salePrice, setSalePrice] = useState(0)
@@ -74,6 +85,7 @@ const ModifyInventory = (props) => {
                         modifySuccessfull={modifySuccessfull}
                         modifyFailed={modifyFailed}
                         dataSended={dataSended}
+                        providers={providers}
                     />
                     {/*Panel de la calculadora*/}
                     <CalcSalePrice

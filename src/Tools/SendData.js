@@ -12,7 +12,7 @@ const SendData = async (url, data) => {
         if(error.response.data.message){
             responseServer = error.response.data.message
         }else {
-
+            responseServer = 'El servidor no ha respondido'
         }
     });
     return responseServer

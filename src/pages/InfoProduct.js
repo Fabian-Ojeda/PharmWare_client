@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import FormHandleSearchInfoProduct from "../Components/FormHandleSearchInfoProduct";
+import FormSearchProdUpdIn from "../Components/FormSearchProdUpdIn";
 import {useNavigate} from "react-router-dom";
 
 const InfoProduct = () => {
@@ -10,7 +10,11 @@ const InfoProduct = () => {
         }
     });
 
-    const [product, setProduct] = useState({name:'Dodge Challenger srt Demon', price:590000000, unitSale:'carro', ubication:'F-5'})
+    const [product, setProduct] = useState({})
+
+    const onChangeFunction = (item) => {
+        setProduct({name:item.nombre, price:item.precio, unitSale:item.unidad_venta, ubication:item.ubicacion})
+    }
 
     return(
         <div className={'container'}>
@@ -19,7 +23,7 @@ const InfoProduct = () => {
             </div>
             {/*Panel de busqueda manual*/}
             <div>
-                <FormHandleSearchInfoProduct/>
+                <FormSearchProdUpdIn  flag={3} onChangeFunction={ onChangeFunction }/>
             </div>
             <div className={'col mt-5'}>
                 <div className={'row'}>

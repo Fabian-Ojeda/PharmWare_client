@@ -1,4 +1,4 @@
-import React , { useState } from "react";
+import React , { useState , useEffect} from "react";
 import { Controller, useForm} from "react-hook-form";
 import {BsCalendarEvent} from "react-icons/bs";
 import DatePicker, {registerLocale} from "react-datepicker";
@@ -12,7 +12,6 @@ const FormAddLotes = (props) => {
     const ip = process.env.REACT_APP_IP_SERVER
     let minDate = new Date()
     minDate.setMonth(minDate.getMonth()+1)
-
     //------------Función que se ejecuta en el submit del formulario
     const onSubmitValuesProduct = async (data) => {
         if (props.barCode === 0) {
@@ -58,8 +57,9 @@ const FormAddLotes = (props) => {
                     required:true
                 })}>
                     <option value="">Proveedor...</option>
-                    <option value={1}>Coopidrogas</option>
-                    <option value={2}>Laboratorios Aventis</option>
+                    {props.providers.map((item)=>(
+                        <option key={item.id_proveedor} value={item.id_proveedor}>{item.nombre}</option>
+                    ))}
                 </select>
                 <span className="text-danger text-small d-block mt-1">
                         {errors.providers?.type === 'required' && "Por favor seleccione un proveedor"}

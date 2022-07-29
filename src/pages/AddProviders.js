@@ -1,12 +1,14 @@
 import React, {useState, useEffect} from "react";
 import { Controller, useForm} from "react-hook-form";
 import { useNavigate } from 'react-router-dom';
+import SendData from "../Tools/SendData";
 
 const AddProviders = () => {
     const navigate = useNavigate();
     const {register, formState: {errors}, handleSubmit, watch,control, setValue } = useForm()
     const [succesfullCreated, setSuccesfullCreated] = useState('')
     const [failitureCreated, setfailitureCreated] = useState('')
+    const ip = process.env.REACT_APP_IP_SERVER
 
     useEffect(() => {
         if (!localStorage.getItem("token")){
@@ -17,9 +19,17 @@ const AddProviders = () => {
         }
     });
 
-    const onSubmit = (data) => {
-        alert('se va a enviar ' + data.nameProvider)
+    const onSubmit = async (data) => {
         setSuccesfullCreated('Creando Proveedor...')
+        setfailitureCreated('')
+        let response = await SendData('http://' + ip + '/inventory/create_supplier', {name: data.nameProvider})
+        if (response==='OK'){
+            succesCreating()
+        } else if (response==='Supplier already exists'){
+            failCreating('El proveedor que intenta crear ya esta registrado')
+        } else {
+            failCreating(response)
+        }
     }
 
     const succesCreating = () => {
