@@ -2,15 +2,25 @@ import React, {useState} from "react";
 import ReportBoard from "./ReportBoard";
 import { Controller, useForm} from "react-hook-form";
 import DatePicker from "react-datepicker";
-import ReportMonthly from "./ReportMonthly";
+import SendData from "../Tools/SendData";
+
 
 const ReportDaily = () => {
-
+    const ip = process.env.REACT_APP_IP_SERVER
     const {register, formState: {errors}, handleSubmit, control, setValue } = useForm()
     const [visible, setVisible] = useState('none')
-    const onSubmit = (data) => {
-        setVisible('block')
-        //alert("Nos llego la fecha "+data.dateBill)
+    const [dateToShow, setDatetoShow] = useState('')
+    const [reports, setReports] = useState({total19:0, total5:0,total0:0})
+    const onSubmit = async (data) => {
+        setReports({total19:0, total5:0,total0:0})
+        setDatetoShow(data.dateBill.getDate() + "/" + (data.dateBill.getMonth() + 1) + "/" + data.dateBill.getFullYear())
+        const responseServer = await SendData('http://'+ip+'/report/daily', {date:data.dateBill.getFullYear()+"-"+data.dateBill.getMonth()+"-"+data.dateBill.getDate()})
+        if (typeof responseServer === 'object') {
+            setReports(responseServer)
+            setVisible('block')
+        }else{
+            alert("eso no sivio")
+        }
     }
 
 
@@ -32,6 +42,7 @@ const ReportDaily = () => {
                                     onChange={(date) => field.onChange(date)}
                                     selected={field.value}
                                     dateFormat="dd/MM/yyyy"
+                                    maxDate={new Date()}
                                 />
                             )}
                         />
@@ -46,9 +57,11 @@ const ReportDaily = () => {
             </div>
             {/*container de campos*/}
             <div className={'mt-3'} style={{display:visible}}>
-                <h3>Fecha: 21/05/36</h3>
+                <h3>Fecha: {dateToShow}</h3>
                 <ReportBoard
-                visible = {visible}/>
+                visible = {visible}
+                reports={reports}
+                />
             </div>
     </div>
         )

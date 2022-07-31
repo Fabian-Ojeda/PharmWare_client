@@ -8,7 +8,7 @@ import SendDataWithHeaders from "../Tools/SendDataWithHeaders";
 const Sales = () => {
     const dateTemp =  new Date()
     const today = dateTemp.getDate()+"/"+(dateTemp.getMonth()+1)+"/"+dateTemp.getFullYear()
-    const todayToSend = dateTemp.getFullYear()+"/"+dateTemp.getMonth()+"/"+dateTemp.getDate()
+    const todayToSend = dateTemp.getFullYear()+"/0"+dateTemp.getMonth()+"/"+dateTemp.getDate()
     const ip = process.env.REACT_APP_IP_SERVER
     const navigate = useNavigate();
 
