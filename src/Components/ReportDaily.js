@@ -14,7 +14,7 @@ const ReportDaily = () => {
     const onSubmit = async (data) => {
         setReports({total19:0, total5:0,total0:0})
         setDatetoShow(data.dateBill.getDate() + "/" + (data.dateBill.getMonth() + 1) + "/" + data.dateBill.getFullYear())
-        const responseServer = await SendData('http://'+ip+'/report/daily', {date:data.dateBill.getFullYear()+"-"+data.dateBill.getMonth()+"-"+data.dateBill.getDate()})
+        const responseServer = await SendData('http://'+ip+'/report/daily', {date:data.dateBill.getFullYear()+"-"+(data.dateBill.getMonth()+1)+"-"+data.dateBill.getDate()})
         if (typeof responseServer === 'object') {
             setReports(responseServer)
             setVisible('block')
