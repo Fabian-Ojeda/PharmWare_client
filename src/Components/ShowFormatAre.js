@@ -6,6 +6,8 @@ import ContainerTableLimpAre from "./ContainerTableLimpAre";
 
 const ShowFormatAre = () => {
     const [visibleTable, setVisibleTable] = useState('none')
+    const [enableEndDate, setEnableEndDate] = useState(true)
+    const [minDate, setMinDate] = useState(new Date(2020, 11, 25))
     const {register, formState: {errors}, handleSubmit,control } = useForm()
     const onSubmit = (data) => {
         alert("Nos llega por ahora: "+data.initDate+" "+data.endDate)
@@ -29,9 +31,12 @@ const ShowFormatAre = () => {
                                             className={'form-control'}
                                             placeholderText={"Fecha Inicial"}
                                             locale={"es"}
-                                            onChange={(date) => field.onChange(date)}
+                                            onChange={(date) => {field.onChange(date)
+                                                setMinDate(date)
+                                                setEnableEndDate(false)}}
                                             selected={field.value}
                                             dateFormat="dd/MM/yyyy"
+                                            maxDate={new Date()}
                                         />
                                     )}
                                 />
@@ -58,6 +63,9 @@ const ShowFormatAre = () => {
                                             onChange={(date) => field.onChange(date)}
                                             selected={field.value}
                                             dateFormat="dd/MM/yyyy"
+                                            maxDate={new Date()}
+                                            minDate={minDate}
+                                            disabled={enableEndDate}
                                         />
                                     )}
                                 />

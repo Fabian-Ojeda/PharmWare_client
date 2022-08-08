@@ -33,13 +33,13 @@ const Inventory = () => {
             {/* Container de opciones */}
             <div className={'OptionsInventory'}>
                 <div className={'leftTool'}>
-                    <Link to={'/Inventario/ActualizarInventario'}><button className={'btn btn-info tool'}>Actualizar el inventario</button></Link>
+                    <Link to={'/Inventario/ActualizarInventario'}><button className={'btn btn-success tool'}>Actualizar el inventario</button></Link>
                 </div>
                 <div className={'rightTools'}>
                     <div className="dropdown tool">
-                        <button className="btn btn-danger dropdown-toggle" type="button" id="dropdownMenu2"
+                        <button className="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu2"
                                 data-bs-toggle="dropdown" aria-expanded="false">
-                            Categoria
+                            Categoría
                         </button>
                         <ul className="dropdown-menu" aria-labelledby="dropdownMenu2">
                             <li>

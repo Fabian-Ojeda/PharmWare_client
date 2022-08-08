@@ -1,8 +1,10 @@
 import React, {useEffect} from "react";
 import { Controller, useForm} from "react-hook-form";
 import { useNavigate } from 'react-router-dom';
+import SendDataWithHeaders from "../Tools/SendDataWithHeaders";
 
 const AddUser = () => {
+    const ip = process.env.REACT_APP_IP_SERVER
     const navigate = useNavigate();
     const {register, formState: {errors}, handleSubmit, watch,control, setValue } = useForm()
     useEffect(() => {
@@ -13,12 +15,18 @@ const AddUser = () => {
             navigate('/');
         }
     });
-    const onSubmit = (data) => {
-        if (data.passwordUser!=data.passwordX2){
+    const onSubmit = async (data) => {
+        if (data.passwordUser != data.passwordX2) {
             alert("Las contraseñas no coinciden")
-        }else{
-            alert("Usuario Creado Correctamente")
-            navigate('/Main');
+        } else {
+            const dataToSend = {
+                username:data.nameUser,
+                password:data.passwordUser,
+                role:'user'
+            }
+            const response = await SendDataWithHeaders('http://' + ip + '/users/create_user', dataToSend)
+            console.log(response)
+            //navigate('/Main');
 
         }
     }

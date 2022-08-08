@@ -8,9 +8,10 @@ const ShowFormatTemHum = () => {
 
   const [minDate, setMinDate] = useState(new Date(2020, 11, 25))
   const [visibleTable, setVisibleTable] = useState('none')
+  const [enableEndDate, setEnableEndDate] = useState(true)
   const {register, formState: {errors}, handleSubmit,control } = useForm()
   const onSubmit = (data) => {
-    alert("Nos llega por ahora: "+data.initDate+" "+data.endDate)
+    alert("Nos llega por ahora: "+data.initDates+" "+data.endDate)
     setVisibleTable('block')
   }
 
@@ -32,7 +33,8 @@ const ShowFormatTemHum = () => {
                         placeholderText={"Fecha Inicial"}
                         locale={"es"}
                         onChange={(date) => {field.onChange(date)
-                                              setMinDate(date)}}
+                                              setMinDate(date)
+                                              setEnableEndDate(false)}}
                         selected={field.value}
                         dateFormat="dd/MM/yyyy"
                         maxDate={new Date()}
@@ -65,6 +67,7 @@ const ShowFormatTemHum = () => {
                         dateFormat="dd/MM/yyyy"
                         maxDate={new Date()}
                         minDate={minDate}
+                        disabled={enableEndDate}
                     />
                 )}
             />

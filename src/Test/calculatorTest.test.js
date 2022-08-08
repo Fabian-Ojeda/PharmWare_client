@@ -1,9 +1,9 @@
 import Calculator from "../Tools/calculator";
 
-describe('Suma de numeros', () => {
-    test('4+5 debe dar 9', ()=>{
+describe('calculo de una ganancia', () => {
+    test('Si un producto vale 1000 y se desea ganarle el 50% el resultado debe dar 1500', ()=>{
         let myCalculator = new Calculator();
-        const result = myCalculator.suma(8,5)
-        expect(result).toBe(13)
+        const result = myCalculator.ganancia(1000,50)
+        expect(result).toBe(1500)
     })
 })

@@ -113,6 +113,10 @@ const Sales = () => {
         setProducts([])
     }
 
+    const cancelSale = () => {
+        setProducts([])
+    }
+
     const closePrintShell = () => {
         setShowPrintShell(false)
     }
@@ -154,7 +158,7 @@ const Sales = () => {
               <div className={'col'}>
                   <div className={'row mt-2'}>
                       <div className={'col'} align={'right'}><button  className={'btn btn-primary'} onClick={sendSale}>Finalizar venta</button></div>
-                      <div className={'col'} align={'right'}><button className={'btn btn-danger mx-5'}>Cancelar Venta</button></div>
+                      <div className={'col'} align={'right'}><button className={'btn btn-danger mx-5'} onClick={cancelSale}>Cancelar Venta</button></div>
                   </div>
               </div>
           </div>

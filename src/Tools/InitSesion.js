@@ -11,14 +11,18 @@ const InitSesion = async (usname, password) => {
             responseServer = response.data
         }
     }).catch(function (error) {
-        if (error.response.data.message){
-            if(error.response.data.message==='User not found'){
-                responseServer = "El usuario no se ha encontrado"
+        if (error.code==="ERR_NETWORK"){
+            responseServer = "Sin respuesta por parte del servidor"
+        }else{
+            if(error.response.data.message){
+                if(error.response.data.message==='User not found'){
+                    responseServer = "El usuario no se ha encontrado"
+                }else {
+                    responseServer = "contraseña incorrecta"
+                }
             }else {
-                responseServer = "contraseña incorrecta"
+                responseServer = "Sin respuesta por parte del servidor"
             }
-        }else {
-            responseServer =  "Sin respuesta por parte del servidor"
         }
         });
     return responseServer

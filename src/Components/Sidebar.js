@@ -3,7 +3,7 @@ import {FaBars} from "react-icons/fa";
 import {NavLink} from "react-router-dom";
 import {BsCart, BsReverseLayoutTextSidebarReverse , BsClipboardCheck, BsPersonPlus, BsCurrencyDollar, BsQuestionCircle, BsBagPlus} from "react-icons/bs";
 import { RiLogoutBoxLine } from "react-icons/ri";
-import logoDrogueria from "../assets/Images/Logo Drogueria.PNG";
+import logoDrogueria from "../assets/Images/Logo Drogueria LB.PNG";
 import { useNavigate } from 'react-router-dom';
 
 const Sidebar = (props) => {

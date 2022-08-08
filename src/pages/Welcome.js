@@ -19,8 +19,8 @@ const Welcome = () => {
   </div>
       <div className="container d-flex justify-content-center align-items-center mt-5">
         <div align={'center'}>
-      <h1 className={"welcome"}>BIENVENIDO A SIPIDSA</h1>
-      <h2 className={'mt-5'}>Sistema informatico postventa e inventario drogueria San Antonio</h2>
+      <h1 className={"welcome"}>BIENVENIDO A PHARMAWARE</h1>
+      <h2 className={'mt-5'}>Sistema informatico postventa e inventario para droguerías</h2>
         </div>
       </div>
   </div>)

@@ -17,7 +17,7 @@ const ReprintBill = () => {
     const {register, formState: {errors}, handleSubmit, control, setValue } = useForm()
     const [dateSelected, setDateSelected] = useState(new Date().getFullYear()+"/"+new Date().getMonth()+"/"+new Date().getDate())
     const onSubmit = (data) => {
-        let dataToSend = data.dateBill.getFullYear()+"/"+data.dateBill.getMonth()+"/"+data.dateBill.getDate()
+        let dataToSend = data.dateBill.getFullYear()+"/"+(data.dateBill.getMonth()+1)+"/"+data.dateBill.getDate()
         setDateSelected(dataToSend)
     }
 

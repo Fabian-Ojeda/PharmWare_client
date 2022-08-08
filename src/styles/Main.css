@@ -13,7 +13,7 @@ main{
 }
 
 .sidebar{
-    background: #232552;
+    background: #323444;
     color: #ffffff;
     height: 100vh;
     width: 250px;
@@ -46,14 +46,14 @@ main{
 }
 
 .link:hover{
-    background:lightskyblue;
-    color: black;
+    background:#0073AC;
+    color:  #ffffff;
     transition: all 0.5s;
 }
 
 .active{
-    background: lightskyblue;
-    color: #000000;
+    background: #0073AC;
+    color: #ffffff;
 }
 
 .icon, .link_text{

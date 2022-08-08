@@ -2,7 +2,7 @@ import axios from "axios";
 
 const SendDataWithHeaders = async (url, data) => {
     var responseServer = null
-    console.log(localStorage.getItem("token"))
+    //console.log(localStorage.getItem("token"))
     await axios.post(url, data, { headers: {
             'x-access-token': localStorage.getItem("token")
         }})

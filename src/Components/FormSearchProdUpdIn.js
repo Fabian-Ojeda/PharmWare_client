@@ -31,6 +31,8 @@ const FormSearchProdUpdIn = (props) => {
       itemSelected = {id:selected.id_producto, name:selected.nombre,barCode:selected.codigo_barras}
     }else if (props.flag === 3){
       itemSelected={nombre: selected.nombre, precio:selected.precio, unidad_venta: selected.unidad_venta, ubicacion:selected.ubicacion}
+    }else if (props.flag === 4){
+      itemSelected={id:selected.id_producto, name: selected.nombre, price:selected.precio, category: selected.categoria}
     }
     props.onChangeFunction(itemSelected)
     setSearch('')

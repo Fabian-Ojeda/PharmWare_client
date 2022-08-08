@@ -1,6 +1,6 @@
 class Calculator {
-    suma(a,b) {
-        return a+b;
+    ganancia(a,b) {
+        return a+((a/100)*b);
     }
 }
 
