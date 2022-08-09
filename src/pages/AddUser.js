@@ -30,10 +30,14 @@ const AddUser = () => {
                 role:'user'
             }
             const response = await SendDataWithHeaders('http://' + ip + '/user/create_user', dataToSend)
-            if(response==='User was created succesfuly'){
+            if(response==='OK'){
                 setBlueMessage('Usuario creado correctamente')
+            }else if(response==="The User already exist"){
+                setBlueMessage('')
+                setRedMessage("El usuario ya existe")
             }else{
-                setRedMessage('El usuario no se ha podido crear')
+                setBlueMessage('')
+                setRedMessage("El servidor no ha respondido")
             }
 
         }
