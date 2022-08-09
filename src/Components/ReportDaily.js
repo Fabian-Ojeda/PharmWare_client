@@ -11,15 +11,22 @@ const ReportDaily = () => {
     const [visible, setVisible] = useState('none')
     const [dateToShow, setDatetoShow] = useState('')
     const [reports, setReports] = useState({total19:0, total5:0,total0:0})
+    const [loadingData, setLoadingData] = useState('')
+    const [errorResponse, setErrorResponse] = useState('')
     const onSubmit = async (data) => {
+        setVisible('none')
         setReports({total19:0, total5:0,total0:0})
+        setErrorResponse('')
+        setLoadingData('Solicitando reporte...')
         setDatetoShow(data.dateBill.getDate() + "/" + (data.dateBill.getMonth() + 1) + "/" + data.dateBill.getFullYear())
         const responseServer = await SendData('http://'+ip+'/report/daily', {date:data.dateBill.getFullYear()+"-"+(data.dateBill.getMonth()+1)+"-"+data.dateBill.getDate()})
         if (typeof responseServer === 'object') {
+            setLoadingData('')
             setReports(responseServer)
             setVisible('block')
         }else{
-            alert("eso no sivio")
+            setLoadingData('')
+            setErrorResponse('No se ha obtenido respuesta del servidor')
         }
     }
 
@@ -62,6 +69,14 @@ const ReportDaily = () => {
                 visible = {visible}
                 reports={reports}
                 />
+            </div>
+            <div>
+                <span className="text-primary fs-3 d-block mt-3">
+                    {loadingData}
+                </span>
+                <span className="text-danger fs-3 d-block mt-3">
+                    {errorResponse}
+                </span>
             </div>
     </div>
         )

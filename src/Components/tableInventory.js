@@ -11,10 +11,9 @@ const TableInventory = (props) => {
     const [componentShowLotes, setComponentShowLotes] = useState(<br/>)
     const [itemSelected, setItemSelected] = useState(null)
 
-    const changeSelectedItem = (item, idItem) => {
-        setComponentShowLotes(<ContainerTableLotes idProduct={idItem}/>)
-        setItemSelected(item)
-    }
+    useEffect(()=>{
+        getProducts()
+    })
 
     const getProducts = () => {
         setProducts([])
@@ -27,6 +26,34 @@ const TableInventory = (props) => {
         }
         setProducts(data)
     }
+
+    const changeSelectedItem = (item, idItem) => {
+        setComponentShowLotes(<ContainerTableLotes idProduct={idItem}/>)
+        setItemSelected(item)
+    }
+
+    const columns = [
+        {dataField: "rowNumber", text:"#",headerStyle: (column, colIndex) => {
+                return { width: '6vh' }},formatter: (cell, row, rowIndex) => <td>{rowIndex+1}</td>},
+        {dataField: "nombre", text:"Nombre", sort: true},
+        {dataField: "categoria", text:"Categoria",headerStyle: (column, colIndex) => {
+                return { width: '17vh' }}},
+        {dataField: "laboratorio", text:"Laboratorio",headerStyle: (column, colIndex) => {
+                return { width: '21vh' }}},
+        {dataField: "precio", text:"Precio",headerStyle: (column, colIndex) => {
+                return { width: '12vh' }}},
+        {dataField: "unidad_venta", text:"Unidad venta",headerStyle: (column, colIndex) => {
+                return { width: '12vh' }}},
+        {dataField: "ubicacion", text:"Ubicación",headerStyle: (column, colIndex) => {
+                return { width: '12vh' }}},
+        {dataField: "cantidad_minima", text:"Cantidad minima",headerStyle: (column, colIndex) => {
+                return { width: '11vh' }}},
+        {dataField: "cantidad", text:"Cantidad",headerStyle: (column, colIndex) => {
+                return { width: '11vh' }}},
+        {dataField: "button", text:"Lotes",headerStyle: (column, colIndex) => {
+                return { width: '15vh' }}}
+    ]
+
 
     const pageButtonRenderer = ({
                                                    page,
@@ -84,32 +111,6 @@ const TableInventory = (props) => {
     const options = {
         pageButtonRenderer,sizePerPageRenderer
     };
-
-    useEffect(()=>{
-        getProducts()
-    })
-
-    const columns = [
-        {dataField: "rowNumber", text:"#",headerStyle: (column, colIndex) => {
-                return { width: '6vh' }},formatter: (cell, row, rowIndex) => <td>{rowIndex+1}</td>},
-        {dataField: "nombre", text:"Nombre", sort: true},
-        {dataField: "categoria", text:"Categoria",headerStyle: (column, colIndex) => {
-                return { width: '17vh' }}},
-        {dataField: "laboratorio", text:"Laboratorio",headerStyle: (column, colIndex) => {
-                return { width: '21vh' }}},
-        {dataField: "precio", text:"Precio",headerStyle: (column, colIndex) => {
-                return { width: '12vh' }}},
-        {dataField: "unidad_venta", text:"Unidad venta",headerStyle: (column, colIndex) => {
-                return { width: '12vh' }}},
-        {dataField: "ubicacion", text:"Ubicación",headerStyle: (column, colIndex) => {
-                return { width: '12vh' }}},
-        {dataField: "cantidad_minima", text:"Cantidad minima",headerStyle: (column, colIndex) => {
-        return { width: '11vh' }}},
-        {dataField: "cantidad", text:"Cantidad",headerStyle: (column, colIndex) => {
-                return { width: '11vh' }}},
-        {dataField: "button", text:"Lotes",headerStyle: (column, colIndex) => {
-        return { width: '15vh' }}}
-    ]
 
     const defaultSorted = [{
         dataField: 'nombre',

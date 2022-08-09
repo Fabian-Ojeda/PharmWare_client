@@ -1,17 +1,13 @@
-import React, { useState } from "react";
-import { Controller, useForm} from "react-hook-form";
+import React from "react";
+import { useForm} from "react-hook-form";
 
 const CalcSalePrice = (props) => {
-    const [salePrice, setSalePrice] = useState(0)
 
-    const {register, formState: {errors}, handleSubmit, watch,control} = useForm()
+    const {register, formState: {errors}, handleSubmit} = useForm()
 
-    //var precioVenta = 0;
     const onSubmitPrecioVenta = (data) => {
         const salePrice = Number.parseInt((data.netPrice/100*data.percentageWin))+Number.parseInt(data.netPrice)
         changePrecioVenta(salePrice)
-        /*alert("desde la calculadora, sabemos que el precio de venta es de "+props.salePrice+ "aqui dentro tenemos: "+salePrice)
-        console.log(salePrice)*/
     }
 
     const changePrecioVenta = (salePrice) => {

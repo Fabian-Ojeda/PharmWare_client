@@ -69,7 +69,7 @@ const ModifyInventory = (props) => {
 
     return(
         <div className={'container'}>
-            <h1>Modificación de Inventario</h1>
+            <h1>Agregación de lotes</h1>
             <div className={'col'}>
                 {/*Panel del busqueda manual*/}
                 <FormSearchProdUpdIn flag={2} onChangeFunction={ onChangeFunction }/>

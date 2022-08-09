@@ -65,11 +65,9 @@ const FormTempHum = () => {
                         />
                     )}
                 />
-
                 <div className="input-group-prepend">
                   <span className="input-group-text"><h7><BsCalendarEvent/></h7></span>
                 </div>
-
               </div>
               <span className="text-danger text-small d-block mb-2">
                                 {errors.dateDay?.type === 'required' && "Por favor seleccione la fecha"}

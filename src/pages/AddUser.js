@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import { Controller, useForm} from "react-hook-form";
 import { useNavigate } from 'react-router-dom';
 import SendDataWithHeaders from "../Tools/SendDataWithHeaders";
@@ -7,6 +7,8 @@ const AddUser = () => {
     const ip = process.env.REACT_APP_IP_SERVER
     const navigate = useNavigate();
     const {register, formState: {errors}, handleSubmit, watch,control, setValue } = useForm()
+    const [blueMessage, setBlueMessage] = useState('')
+    const [redMessage, setRedMessage] = useState('')
     useEffect(() => {
         if (!localStorage.getItem("token")){
             navigate('/');
@@ -16,17 +18,23 @@ const AddUser = () => {
         }
     });
     const onSubmit = async (data) => {
+        setBlueMessage('')
+        setRedMessage('')
         if (data.passwordUser != data.passwordX2) {
             alert("Las contraseñas no coinciden")
         } else {
+            setBlueMessage('Creando usuario...')
             const dataToSend = {
                 username:data.nameUser,
                 password:data.passwordUser,
                 role:'user'
             }
-            const response = await SendDataWithHeaders('http://' + ip + '/users/create_user', dataToSend)
-            console.log(response)
-            //navigate('/Main');
+            const response = await SendDataWithHeaders('http://' + ip + '/user/create_user', dataToSend)
+            if(response==='User was created succesfuly'){
+                setBlueMessage('Usuario creado correctamente')
+            }else{
+                setRedMessage('El usuario no se ha podido crear')
+            }
 
         }
     }
@@ -47,10 +55,12 @@ const AddUser = () => {
                             placeholder={"Nombre de usuario"}
                             style={{width:'50%'}}
                             {...register("nameUser",{
-                                required:true
+                                required:true,
+                                minLength: 10
                             })}
                         /><span className="text-danger text-small d-block">
                         {errors.nameUser?.type === 'required' && "Ingrese el nombre del usuario"}
+                        {errors.nameUser?.type === 'minLength' && "Ingrese un nombre de usuario de minimo 10 caracteres"}
                     </span>
                     </div>
                     <div className="form-group mt-4" align={'center'}>
@@ -61,10 +71,12 @@ const AddUser = () => {
                             placeholder={"Contraseña"}
                             style={{width:'50%'}}
                             {...register("passwordUser",{
-                                required:true
+                                required:true,
+                                pattern: /^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$/
                             })}
                         /><span className="text-danger text-small d-block">
                         {errors.passwordUser?.type === 'required' && "Ingrese la contraseña del usuario"}
+                        {errors.passwordUser?.type === 'pattern' && "La contraseña debe tener entre 8 y 16 caracteres, al menos un dígito, al menos una minúscula y al menos una mayúscula."}
                     </span>
                     </div>
                     <div className="form-group mt-4" align={'center'}>
@@ -85,6 +97,16 @@ const AddUser = () => {
                         <button className={'btn btn-success'} type={'submit'}>Aceptar</button>
                     </div>
                 </form>
+            </div>
+            <div align={'center'}>
+                <span className="text-primary fs-3 d-block mt-3">
+                    {blueMessage}
+                </span>
+            </div>
+            <div align={'center'}>
+                <span className="text-danger fs-3 d-block mt-3">
+                    {redMessage}
+                </span>
             </div>
         </div>
 

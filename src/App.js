@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import {BrowserRouter, Route, Routes} from 'react-router-dom'
+//Importación de todas las paginas
 import Login from "./pages/login";
 import Inventory from "./pages/Inventory";
 import Sidebar from "./Components/Sidebar";
@@ -18,25 +19,25 @@ import ReprintBill from "./pages/ReprintBill";
 import { useIdleTimer } from 'react-idle-timer'
 
 function App() {
-
+    //Variables para manejar la visibilidad de la barra lateral
     const [visible, setVisible] = useState('none')
+    //Variables para manejar la visibilidad de las opciones de administrador
     const [visibleAdminOptions, setVisibleAdminOptions] = useState('none')
-
+    //funciones para cambiar la visibilidad de componentes
     const changeVisibilitySideBar = (status) => {
         setVisible(status)
     }
-
     const changeVisibilityAdminOptions = (status) => {
         setVisibleAdminOptions(status)
     }
-
+    //funcion para almacenar el token y el rol del usuario
     const changeToken = (token, rol) =>{
         localStorage.setItem("token",token)
         localStorage.setItem("rol",rol)
         idleTimer.reset()
         idleTimer.start()
     }
-
+    //Función para cerrar sesión
     const endSession = () => {
         localStorage.removeItem("token")
         localStorage.removeItem("rol")
@@ -45,7 +46,7 @@ function App() {
         idleTimer.pause()
     }
 
-
+    //Funciones del componente IdleTimer
     const onPrompt = () => {
         // Fire a Modal Prompt
     }
@@ -70,11 +71,12 @@ function App() {
         onIdle,
         onActive,
         onAction,
-        timeout: 1000 * 60 *30 ,
+        timeout: 1000 * 60 *60,
         promptTimeout: 0,
         startOnMount: false,
         startManually: true,
         stopOnIdle: true,})
+
 
     return (
         <div>

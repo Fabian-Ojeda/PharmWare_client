@@ -11,7 +11,7 @@ const ShowFormatTemHum = () => {
   const [enableEndDate, setEnableEndDate] = useState(true)
   const {register, formState: {errors}, handleSubmit,control } = useForm()
   const onSubmit = (data) => {
-    alert("Nos llega por ahora: "+data.initDates+" "+data.endDate)
+    alert("Intervalo de fechas: "+data.initDates+" "+data.endDate)
     setVisibleTable('block')
   }
 

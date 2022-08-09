@@ -7,9 +7,8 @@ import logoDrogueria from "../assets/Images/Logo Drogueria LB.PNG";
 import { useNavigate } from 'react-router-dom';
 
 const Sidebar = (props) => {
+
     const navigate = useNavigate();
-
-
     const endSession = () => {
         localStorage.removeItem("token")
         localStorage.removeItem("rol")

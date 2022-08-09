@@ -60,8 +60,8 @@ const FormSearchProdUpdIn = (props) => {
         Coincidencias
       </button>
       <ul className="dropdown-menu" aria-labelledby="dropdownMenu2" style={{width:'40%'}}>
-        {coincidences.map((item) => (
-            <li key={item.idProductos}>
+        {coincidences.map((item, index) => (
+            <li key={index}>
               <button  className="dropdown-item" type="button" onClick={() => coincidenceSelected(item)}>{item.nombre}</button>
             </li>
         ))}

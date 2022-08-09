@@ -2,14 +2,14 @@ import axios from "axios";
 
 const SendDataWithHeaders = async (url, data) => {
     var responseServer = null
-    //console.log(localStorage.getItem("token"))
     await axios.post(url, data, { headers: {
             'x-access-token': localStorage.getItem("token")
         }})
         .then(function (response) {
-        if(response.data){
-            responseServer = response.data
-            //console.log(response.data)
+            console.log(response)
+        if(response.status===200){
+                responseServer = 'OK'
+
         }
     }).catch(function (error) {
         if(error.response.data.message){

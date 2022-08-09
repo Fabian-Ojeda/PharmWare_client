@@ -101,10 +101,11 @@ const Sales = () => {
         const dataToSend = {date:todayToSend, total:totalSale, user:1, client:idClientToSend, products:productsToSend}
         const response = await SendDataWithHeaders('http://'+ip+'/inventory/sale', dataToSend)
         //const response = await SendData('http://'+ip+'/inventory/sale', dataToSend)
+        console.log(response)
         if (response==='OK'){
             setShowPrintShell(true)
         } else {
-            alert("llorela")
+            alert("Error en la venta")
         }
     }
 

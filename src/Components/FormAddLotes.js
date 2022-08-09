@@ -20,7 +20,7 @@ const FormAddLotes = (props) => {
             props.dataSended()
             const dataToSend = {
                 "barCode": props.barCode,
-                "fecha_vencimiento": (data.expirationDate.getFullYear() + "/" + data.expirationDate.getMonth() + "/1"),
+                "fecha_vencimiento": (data.expirationDate.getFullYear() + "/" + (data.expirationDate.getMonth()+1)+ "/1"),
                 "cantidad": data.quantityProduct,
                 "id_proveedor": data.providers
             }
