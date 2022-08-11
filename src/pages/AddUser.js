@@ -64,7 +64,7 @@ const AddUser = () => {
                             })}
                         /><span className="text-danger text-small d-block">
                         {errors.nameUser?.type === 'required' && "Ingrese el nombre del usuario"}
-                        {errors.nameUser?.type === 'minLength' && "Ingrese un nombre de usuario de minimo 10 caracteres"}
+                        {errors.nameUser?.type === 'minLength' && "Ingrese un nombre de usuario de mínimo 10 caracteres"}
                     </span>
                     </div>
                     <div className="form-group mt-4" align={'center'}>

@@ -26,7 +26,7 @@ const AddProviders = () => {
         if (response==='OK'){
             succesCreating()
         } else if (response==='Supplier already exists'){
-            failCreating('El proveedor que intenta crear ya esta registrado')
+            failCreating('El proveedor que intenta crear ya está registrado')
         } else {
             failCreating(response)
         }
