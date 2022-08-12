@@ -88,7 +88,7 @@ const TableBills = (props) => {
     }
 
     const printBill = (id) => {
-      alert("Se le imprime la factura "+id+", claro que si")
+      alert("Scripts de impresión de la factura "+id)
     }
 
     const getBills = () => {

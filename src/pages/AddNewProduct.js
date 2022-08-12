@@ -4,6 +4,7 @@ import {Link, useNavigate} from "react-router-dom"
 import SendData from "../Tools/SendData";
 
 const AddNewProduct = () => {
+  const ip = process.env.REACT_APP_IP_SERVER
   const navigate = useNavigate();
   useEffect(() => {
     if (!localStorage.getItem("token")){
@@ -30,7 +31,7 @@ const AddNewProduct = () => {
     newProduct.barCode = data.barcode
     newProduct.minQuant = data.minimumQuantity
     newProduct.quant = 0
-    const ip = process.env.REACT_APP_IP_SERVER
+    setResponseSent('Creando Producto...')
     const response = await SendData('http://'+ip+'/inventory/create_product', newProduct)
     if (response==='Created'){
       setResponseSent('El producto se ha creado correctamente')

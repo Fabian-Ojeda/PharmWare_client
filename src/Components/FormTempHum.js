@@ -8,22 +8,23 @@ const FormTempHum = () => {
     const ip = process.env.REACT_APP_IP_SERVER
     const [blueMessage, setBlueMessage] = useState('')
     const [redMessage, setRedMessage] = useState('')
-  const {register, formState: {errors}, handleSubmit,control } = useForm()
-  const onSubmit = async (data) => {
+    const {register, formState: {errors}, handleSubmit,control } = useForm()
+    const onSubmit = async (data) => {
       setBlueMessage('')
       setRedMessage('')
         let day = data.dateDay.getDate()
-      let month = (data.dateDay.getMonth() + 1)
+        let month = (data.dateDay.getMonth() + 1)
         if(day<10){
             day="0"+day
         }
         if(month<10){
             month="0"+month
         }
-       let dataToSend={temperature:data.temperature, humidity:data.humidity, date: (day + "/" + month + "/" + data.dateDay.getFullYear())}
+       let dataToSend={temperature:data.temperature, humidity:data.humidity, date: (data.dateDay.getFullYear()+"/"+month+"/"+day)}
         setBlueMessage('Enviando datos...')
       //alert("Nos llega por ahora: " + data.temperature + " " + data.humidity + "" + data.dateDay.getDate() + "/" + (data.dateDay.getMonth() + 1) + "/" + data.dateDay.getFullYear())
       const response = await SendData('http://' + ip + '/formats/temp_humidity', dataToSend)
+
       if (response==='OK'){
           succesCreation()
       } else{
@@ -38,7 +39,11 @@ const FormTempHum = () => {
 
   const failitureCreating = (error) => {
       setBlueMessage('')
-      setRedMessage(error)
+      if(error==='The daily form has already been completed'){
+          setRedMessage('Ya se ha diligenciado un formato en la fecha seleccionada')
+      }else {
+          setRedMessage(error)
+      }
   }
 
   return(<div>

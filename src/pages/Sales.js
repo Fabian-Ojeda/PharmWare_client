@@ -80,7 +80,7 @@ const Sales = () => {
     }
 
     const printBill = () => {
-      alert("Se le imprime, claro que si")
+      alert("Scripts de impresión")
         cleanProducts()
     }
 

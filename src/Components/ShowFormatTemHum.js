@@ -3,16 +3,63 @@ import { Controller, useForm} from "react-hook-form";
 import DatePicker from "react-datepicker";
 import {BsCalendarEvent} from "react-icons/bs";
 import ContainerTableTempHume from "./ContainerTableTempHume";
+import SendData from "../Tools/SendData";
 
 const ShowFormatTemHum = () => {
-
+  const [registers, setRegisters] = useState([])
+  const [blueMessage, setBlueMessage] = useState('')
+  const [redMessage, setRedMessage] = useState('')
   const [minDate, setMinDate] = useState(new Date(2020, 11, 25))
   const [visibleTable, setVisibleTable] = useState('none')
   const [enableEndDate, setEnableEndDate] = useState(true)
   const {register, formState: {errors}, handleSubmit,control } = useForm()
-  const onSubmit = (data) => {
-    alert("Intervalo de fechas: "+data.initDates+" "+data.endDate)
+  const onSubmit = async (data) => {
+
+    const ip = process.env.REACT_APP_IP_SERVER
+    setBlueMessage('')
+    setRedMessage('')
+    let dayInit = data.initDate.getUTCDate();
+    let monthInit = (data.initDate.getMonth() + 1)
+    if (dayInit < 10) {
+      dayInit = "0" + dayInit
+    }
+    if (monthInit < 10) {
+      monthInit = "0" + monthInit
+    }
+    let dayEnd = data.endDate.getUTCDate();
+    let monthEnd = (data.endDate.getMonth() + 1)
+    if (dayEnd < 10) {
+      dayEnd = "0" + dayEnd
+    }
+    if (monthEnd < 10) {
+      monthEnd = "0" + monthEnd
+    }
+
+    let dataToSend = {
+      initDate: (data.initDate.getFullYear() + "/" + monthInit + "/" + dayInit),
+      endDate: (data.endDate.getFullYear() + "/" + monthEnd + "/" + dayEnd)
+    }
+    setBlueMessage('Obteniendo formatos...')
+    const response = await SendData('http://' + ip + '/formats/get_temp_humidity', dataToSend)
+    if (typeof response ==='object') {
+      let tempDate = []
+      response.forEach(element => tempDate.push({id:element.id_regis_tem_humed, date:element.fecha.slice(0,10), temperature:element.temperatura, humidity:element.humedad}));
+      setRegisters(tempDate)
+      succesCreation()
+    }else{
+      failitureCreating(response)
+    }
+  }
+
+  const succesCreation = () => {
+    setBlueMessage('')
+    setRedMessage('')
     setVisibleTable('block')
+  }
+
+  const failitureCreating = (error) => {
+    setBlueMessage('')
+    setRedMessage(error)
   }
 
   return(<div>
@@ -87,7 +134,16 @@ const ShowFormatTemHum = () => {
       </form>
       <div>
         <ContainerTableTempHume
+            registers={registers}
         visible={visibleTable}/>
+      </div>
+      <div align={'center'}>
+                <span className="text-primary fs-3 d-block mt-3">
+                    {blueMessage}
+                </span>
+        <span className="text-danger fs-3 d-block mt-3">
+                    {redMessage}
+                </span>
       </div>
     </div>
 
