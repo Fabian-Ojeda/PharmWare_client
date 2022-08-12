@@ -38,7 +38,7 @@ const AddNewProduct = () => {
       setErrorCreating('')
     } else if (response==='Product already exists'){
       setResponseSent('')
-      setErrorCreating('Ya se encuentra registrado este codigo de barras, el producto ya existe')
+      setErrorCreating('Ya se encuentra registrado este código de barras, el producto ya existe')
     }
   }
 
@@ -165,7 +165,7 @@ const AddNewProduct = () => {
                     required:true
                   })}
               /><span className="text-danger text-small d-block">
-                        {errors.minimumQuantity?.type === 'required' && "Por favor ingrese la cantidad minima del producto"}
+                        {errors.minimumQuantity?.type === 'required' && "Por favor ingrese la cantidad mínima del producto"}
                     </span>
             </div>
             <div className={'row my-3'}>
@@ -173,7 +173,7 @@ const AddNewProduct = () => {
                   name="barcode"
                   className="form-control"
                   type={'number'}
-                  placeholder={"Codigo de barras"}
+                  placeholder={"Código de barras"}
                   {...register("barcode",{
                   })}
               />
